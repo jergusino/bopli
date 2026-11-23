@@ -7,118 +7,145 @@
 <meta name="description" content="Každé ráno sa odfotíš a tvoja rodina a kamaráti ťa celý deň vidia vo widgete na ploche telefónu. Pridaj sa na zoznam čakateľov.">
 <meta property="og:title" content="Kľúčenka — Jedna fotka ráno. Celý deň spolu.">
 <meta property="og:description" content="Súkromná fotka dňa pre rodinu a kamarátov na diaľku. Priamo na ploche telefónu.">
-<meta name="theme-color" content="#FBF7F2">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%23E8694A'/><circle cx='32' cy='34' r='12' fill='none' stroke='white' stroke-width='5'/><rect x='22' y='14' width='20' height='8' rx='4' fill='white'/></svg>">
+<meta name="theme-color" content="#FCFCFD">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23272727'/><circle cx='32' cy='34' r='12' fill='none' stroke='%23AEE4F2' stroke-width='5'/><rect x='22' y='14' width='20' height='8' fill='%23AEE4F2'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#FBF7F2; --bg2:#F3ECE3; --ink:#1C1A17; --muted:#6B645B; --line:#E6DDD1;
-  --accent:#E8694A; --accent-ink:#fff; --card:#fff;
-  --serif:"Fraunces",Georgia,serif; --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --bg:#FCFCFD; --panel:#F3F3F3; --line:#EAEAEA; --ink:#333; --head:#4A4A4A; --muted:#717171;
+  --dark:#272727; --sky:#AEE4F2; --lime:#D4FF8E; --peri:#9090FF; --peach:#FF9466;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font:18px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
-a{color:inherit}
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0}
-.logo{font:500 24px var(--serif);text-decoration:none;display:flex;gap:10px;align-items:center}
-.logo i{width:28px;height:28px;border-radius:8px;background:var(--accent);display:inline-block;position:relative}
-.logo i::after{content:"";position:absolute;inset:9px 8px 6px;border:3px solid #fff;border-radius:50%}
-.navlink{font-weight:500;font-size:16px;text-decoration:none;padding:10px 18px;border:1px solid var(--line);border-radius:99px;background:var(--card)}
-.navlink:hover{border-color:var(--ink)}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1216px;margin:0 auto;padding:0 32px}
+.mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;height:52px;padding-left:32px}
+.logo{font:600 21px var(--sans);letter-spacing:-.02em;color:#111}
+.logo span{font-weight:400}
+.navr{display:flex;align-items:stretch;height:100%}
+.navr a{display:flex;align-items:center;padding:0 18px;font-size:11px}
+.navr .demo{background:var(--sky);color:var(--ink);padding:0 22px}
+.navr .demo:hover{background:#9AD9EA}
 
 /* hero */
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:48px 0 96px}
-.eyebrow{display:inline-flex;gap:8px;align-items:center;font-size:15px;font-weight:500;color:var(--muted);background:var(--card);border:1px solid var(--line);padding:6px 14px;border-radius:99px}
-.eyebrow b{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-h1{font:500 clamp(44px,6.4vw,80px)/1.02 var(--serif);letter-spacing:-.02em;margin:22px 0 22px}
-h1 em,h2 em{color:var(--accent)}
-.lead{font-size:clamp(19px,1.6vw,21px);color:var(--muted);max-width:30em}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;padding:88px 0 104px}
+.tag{display:inline-block;font-size:12px;padding:6px 12px;border:1px dashed #F56023;background:rgba(245,96,35,.08);color:#C24A18}
+h1{font:400 clamp(42px,5.4vw,64px)/1.12 var(--sans);letter-spacing:-.02em;color:var(--head);margin:28px 0 26px;max-width:12em}
+.lead{font-size:19px;line-height:1.6;color:var(--muted);max-width:32em}
 
 /* form */
-form.join{margin-top:32px;display:flex;gap:10px;max-width:520px;flex-wrap:wrap}
-.join input[type=email]{flex:1 1 240px;font:inherit;font-size:18px;padding:16px 20px;border-radius:16px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);min-height:58px}
-.join input[type=email]:focus{outline:none;border-color:var(--ink)}
-.join button{font:600 18px var(--sans);padding:16px 26px;border-radius:16px;border:0;background:var(--ink);color:#fff;cursor:pointer;min-height:58px;transition:transform .15s,background .2s}
-.join button:hover{background:#000;transform:translateY(-1px)}
-.join button:disabled{opacity:.6;cursor:wait;transform:none}
+form.join{margin-top:36px;display:flex;gap:8px;max-width:560px;flex-wrap:wrap}
+.join input[type=email]{flex:1 1 260px;font:16px var(--sans);padding:0 18px;height:54px;border:1px solid #D6D6D6;border-radius:2px;background:#fff;color:var(--ink)}
+.join input[type=email]::placeholder{color:#9A9A9A}
+.join input[type=email]:focus{outline:none;border-color:var(--dark)}
+.join button{font:500 14px var(--mono);text-transform:uppercase;letter-spacing:.08em;height:54px;padding:0 28px;border:0;border-radius:2px;background:var(--dark);color:#fff;cursor:pointer;transition:background .15s}
+.join button:hover{background:#000}
+.join button:disabled{opacity:.6;cursor:wait}
 .join .hp{position:absolute;left:-9999px}
-.fine{font-size:14px;color:var(--muted);margin-top:12px;max-width:520px}
-.msg{font-weight:500;margin-top:14px;min-height:1.6em}
-.msg.ok{color:#2F7A4A}.msg.err{color:#B3261E}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.fine{font-size:13px;color:var(--muted);margin-top:14px;max-width:560px}
+.msg{font-family:var(--mono);font-size:13px;margin-top:12px;min-height:1.5em}
+.msg.ok{color:#2A7A3E}.msg.err{color:#B3261E}
+:focus-visible{outline:2px solid var(--peri);outline-offset:2px}
 
 /* phone */
-.phone{justify-self:center;width:330px;aspect-ratio:9/19.5;border-radius:54px;padding:12px;background:#111;box-shadow:0 40px 80px -30px rgba(60,30,10,.45),0 0 0 2px #2a2a2a inset}
-.screen{height:100%;border-radius:44px;overflow:hidden;position:relative;padding:58px 20px 20px;background:linear-gradient(160deg,#F6C9A8 0%,#E8A3A0 45%,#9DA6D8 100%)}
-.island{position:absolute;top:12px;left:50%;translate:-50% 0;width:104px;height:30px;border-radius:20px;background:#000}
-.time{position:absolute;top:16px;left:34px;font:600 15px var(--sans);color:#1c1a17}
-.widget{border-radius:24px;padding:10px;background:rgba(255,255,255,.35);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.55);display:grid;grid-template-columns:1fr 1fr;gap:8px;box-shadow:0 10px 30px -12px rgba(0,0,0,.25)}
-.ph{aspect-ratio:1;border-radius:16px;position:relative;overflow:hidden;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:8px 9px;font-size:12px;line-height:1.25;animation:in .7s both}
-.ph:nth-child(2){animation-delay:.12s}.ph:nth-child(3){animation-delay:.24s}.ph:nth-child(4){animation-delay:.36s}
-.ph::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.55))}
-.ph>*{position:relative}
-.ph .face{position:absolute;top:22%;left:50%;translate:-50% 0;font-size:34px}
-.ph b{font-weight:600;font-size:13px}
-.ph small{opacity:.85;font-size:11px}
-.ph .mood{position:absolute;top:7px;right:8px;font-size:15px}
-.p1{background:linear-gradient(140deg,#F2B880,#C9724F)}
-.p2{background:linear-gradient(140deg,#8FB9A8,#4F7F72)}
-.p3{background:linear-gradient(140deg,#A9B7E8,#5E6BB0)}
-.p4{background:linear-gradient(140deg,#E9A6B8,#A6567A)}
-.wlabel{text-align:center;font-size:12px;font-weight:500;color:rgba(28,26,23,.75);margin:8px 0 18px}
-.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 14px;padding:0 6px}
-.apps span{aspect-ratio:1;border-radius:14px;background:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.5)}
-@keyframes in{from{opacity:0;transform:scale(.94) translateY(6px)}}
+.phone{justify-self:center;width:310px;aspect-ratio:9/19.5;border-radius:50px;padding:11px;background:var(--dark);box-shadow:0 30px 60px -30px rgba(0,0,0,.35)}
+.screen{height:100%;border-radius:40px;overflow:hidden;position:relative;padding:56px 18px 18px;background:#EEF0F4}
+.island{position:absolute;top:11px;left:50%;translate:-50% 0;width:96px;height:28px;border-radius:20px;background:#000}
+.time{position:absolute;top:15px;left:32px;font:600 14px var(--sans)}
+.widget{border-radius:22px;padding:9px;background:#fff;display:grid;grid-template-columns:1fr 1fr;gap:7px;box-shadow:0 8px 24px -14px rgba(0,0,0,.3)}
+.ph{aspect-ratio:1;border-radius:14px;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:8px 9px;color:#222;line-height:1.25;animation:in .6s both}
+.ph:nth-child(2){animation-delay:.1s}.ph:nth-child(3){animation-delay:.2s}.ph:nth-child(4){animation-delay:.3s}
+.ph .face{position:absolute;top:20%;left:50%;translate:-50% 0;font-size:32px}
+.ph .mood{position:absolute;top:6px;right:8px;font-size:14px}
+.ph b{font-size:12.5px;font-weight:600}
+.ph small{font:10px var(--mono);text-transform:uppercase;letter-spacing:.04em;opacity:.7}
+.p1{background:var(--peach)}.p2{background:var(--lime)}.p3{background:var(--sky)}.p4{background:var(--peri)}
+.wlabel{text-align:center;font:10px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:#777;margin:9px 0 18px}
+.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 13px;padding:0 6px}
+.apps span{aspect-ratio:1;border-radius:13px;background:#E0E3E8}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+
+/* facts strip */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);background:#fff}
+.facts div{padding:28px 28px 24px;border-top:4px solid;border-right:1px solid var(--line)}
+.facts div:last-child{border-right:0}
+.facts .f1{border-top-color:var(--peach)}.facts .f2{border-top-color:var(--sky)}.facts .f3{border-top-color:var(--peri)}
+.facts strong{display:block;font:400 40px/1 var(--sans);letter-spacing:-.02em;color:var(--head);margin-bottom:12px}
+.facts span{font-size:14px;color:var(--ink)}
 
 /* sections */
-section{padding:96px 0;border-top:1px solid var(--line)}
-h2{font:500 clamp(34px,4.4vw,54px)/1.08 var(--serif);letter-spacing:-.015em;max-width:16em}
-.kicker{font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;counter-reset:s;padding:0;list-style:none}
-.steps li{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:32px}
-.steps li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--bg2);font:500 20px var(--serif);margin-bottom:22px}
-h3{font:600 21px/1.3 var(--sans);margin-bottom:8px}
-.steps p,.vals p{color:var(--muted);font-size:17px}
-.vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:36px 40px;margin-top:48px}
-.vals .ico{font-size:28px;margin-bottom:10px}
-.story{background:var(--bg2);border-radius:36px;padding:64px;margin:0 auto}
-.story blockquote{font:500 clamp(26px,3vw,38px)/1.3 var(--serif);max-width:24em}
-.story p{color:var(--muted);margin-top:20px;font-size:17px}
-.cta{text-align:center}
-.cta h2{margin:0 auto}
-.cta form.join,.cta .fine{margin-left:auto;margin-right:auto;justify-content:center}
-footer{padding:40px 0 56px;color:var(--muted);font-size:15px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--line)}
+section{padding:112px 0}
+h2{font:400 clamp(34px,4.2vw,52px)/1.12 var(--sans);letter-spacing:-.02em;color:#555;max-width:14em}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;padding:0;list-style:none}
+.steps li{padding:36px 32px 44px;min-height:300px;border:1px solid var(--line)}
+.steps li:nth-child(1){background:#FAFAFA}
+.steps li:nth-child(2){background:#D7F0F8;border-color:#D7F0F8}
+.steps li:nth-child(3){background:var(--dark);border-color:var(--dark);color:#fff}
+.steps .n{font:12px var(--mono);display:block;margin-bottom:44px;color:#666}
+.steps li:nth-child(3) .n{color:var(--sky)}
+h3{font:500 24px/1.3 var(--sans);color:var(--head);margin-bottom:12px;letter-spacing:-.01em}
+.steps li:nth-child(3) h3{color:#fff}
+.steps p{color:var(--muted);font-size:16px;line-height:1.55}
+.steps li:nth-child(3) p{color:#C9C9C9}
 
-@media (max-width:880px){
-  .hero{grid-template-columns:1fr;padding-top:24px;gap:64px}
-  .steps{grid-template-columns:1fr}
-  .story{padding:40px 28px;border-radius:28px}
-  section{padding:72px 0}
+.vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px 48px;margin-top:56px;padding:0;list-style:none}
+.vals li{display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start}
+.vals .ico{width:40px;height:40px;display:grid;place-items:center;font-size:18px}
+.vals .c1{background:rgba(174,228,242,.5)}.vals .c2{background:rgba(144,144,255,.22)}.vals .c3{background:rgba(212,255,142,.55)}.vals .c4{background:rgba(255,148,102,.22)}.vals .c5{background:var(--panel)}
+.vals b{display:block;font-size:17px;font-weight:500;color:var(--ink)}
+.vals p{font-size:15px;color:var(--muted);margin-top:2px}
+
+.story{background:var(--dark);color:#fff;padding:72px 64px}
+.story .mono{font-size:12px;color:var(--sky)}
+.story blockquote{font:400 clamp(26px,3vw,38px)/1.3 var(--sans);letter-spacing:-.015em;max-width:24em;margin-top:24px}
+.story p{color:#A8A8A8;margin-top:24px}
+
+.cta{border-top:1px solid var(--line)}
+.cta .box{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:11px;color:var(--muted)}
+
+@media (max-width:900px){
+  .wrap{padding:0 20px} nav{padding-left:20px}
+  .navr .hide{display:none}
+  .hero{grid-template-columns:1fr;padding:56px 0 72px}
+  .facts,.steps,.cta .box{grid-template-columns:1fr}
+  .facts div{border-right:0;border-bottom:1px solid var(--line)}
+  .steps li{min-height:0}
+  .story{padding:48px 28px}
+  section{padding:80px 0}
 }
-@media (max-width:400px){.phone{width:290px}}
+@media (max-width:400px){.phone{width:280px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <nav>
-    <a class="logo" href="#"><i aria-hidden="true"></i>Kľúčenka</a>
-    <a class="navlink" href="#pridaj-sa">Pridať sa</a>
-  </nav>
+<nav>
+  <a class="logo" href="#">Kľúčenka</a>
+  <div class="navr mono">
+    <a class="hide" href="#ako">Ako to funguje</a>
+    <a class="hide" href="#preco">Prečo</a>
+    <a class="demo" href="#pridaj-sa">Pridať sa</a>
+  </div>
+</nav>
 
+<div class="wrap">
   <header class="hero">
     <div>
-      <span class="eyebrow"><b></b>Pripravujeme appku pre iPhone</span>
-      <h1>Jedna fotka ráno. <em>Celý deň spolu.</em></h1>
+      <span class="tag mono">Pripravujeme pre iPhone</span>
+      <h1>Jedna fotka ráno. Celý deň spolu.</h1>
       <p class="lead">Každé ráno sa odfotíš a tvoja rodina a kamaráti ťa celý deň vidia vo widgete na ploche telefónu. Bez písania, bez scrollovania. Stačí sa pozrieť.</p>
       <form class="join" novalidate>
         <label class="hp">Nevypĺňaj <input name="web" tabindex="-1" autocomplete="off"></label>
         <input type="email" name="email" required placeholder="tvoj@email.sk" aria-label="Tvoj e-mail" autocomplete="email">
-        <button type="submit">Pridať sa na zoznam</button>
+        <button type="submit">Pridať sa →</button>
       </form>
       <p class="msg" role="status" aria-live="polite"></p>
       <p class="fine">Napíšeme ti, keď bude appka pripravená. Nič iné, žiadny spam.</p>
@@ -138,37 +165,42 @@ footer{padding:40px 0 56px;color:var(--muted);font-size:15px;display:flex;justif
       </div>
     </div>
   </header>
+
+  <div class="facts">
+    <div class="f1"><strong>1 fotka</strong><span>denne. Nová nahradí starú.</span></div>
+    <div class="f2"><strong>6 číslic</strong><span>stačí na pozvanie rodiny do kruhu.</span></div>
+    <div class="f3"><strong>0 lajkov</strong><span>žiadne komentáre, žiadny feed.</span></div>
+  </div>
 </div>
 
-<section>
+<section id="ako">
   <div class="wrap">
-    <p class="kicker">Ako to funguje</p>
-    <h2>Tri kroky. Potom už len pozeráš na plochu.</h2>
+    <h2>Ako to funguje</h2>
     <ol class="steps">
-      <li><h3>Vytvor kruh</h3><p>Napríklad „Rodina“. Pošli 6-miestny kód cez WhatsApp, Messenger alebo SMS a ostatní sa pridajú.</p></li>
-      <li><h3>Ráno sa odfoť</h3><p>Appka ti pripomenie „Odfoť svoj deň“. Pridaj náladu alebo krátku správu, ak chceš.</p></li>
-      <li><h3>Pozri sa na plochu</h3><p>Fotky ľudí z tvojich kruhov máš celý deň vo widgete. Žiadne otváranie, žiadne hľadanie.</p></li>
+      <li><span class="n">01</span><h3>Vytvor kruh.</h3><p>Napríklad „Rodina“. Pošli 6-miestny kód cez WhatsApp, Messenger alebo SMS a ostatní sa pridajú.</p></li>
+      <li><span class="n">02</span><h3>Ráno sa odfoť.</h3><p>Appka ti pripomenie „Odfoť svoj deň“. Pridaj náladu alebo krátku správu, ak chceš.</p></li>
+      <li><span class="n">03</span><h3>Pozri sa na plochu.</h3><p>Fotky ľudí z tvojich kruhov máš celý deň vo widgete. Žiadne otváranie, žiadne hľadanie.</p></li>
     </ol>
   </div>
 </section>
 
-<section>
+<section id="preco" style="padding-top:0">
   <div class="wrap">
-    <p class="kicker">Prečo práve takto</p>
-    <h2>Jednoduché. <em>Súkromné.</em> Pre celú rodinu.</h2>
-    <div class="vals">
-      <div><div class="ico" aria-hidden="true">📸</div><h3>Jedna fotka denne, nič viac</h3><p>Žiadne lajky, komentáre ani nekonečný feed. Len to, ako sa máte dnes.</p></div>
-      <div><div class="ico" aria-hidden="true">🔒</div><h3>Len pre tvojich ľudí</h3><p>Fotku vidia iba ľudia z tvojich kruhov. Nič nie je verejné.</p></div>
-      <div><div class="ico" aria-hidden="true">🧹</div><h3>Bez histórie</h3><p>Nová fotka nahradí tú starú a stará sa zmaže. Nič sa nehromadí.</p></div>
-      <div><div class="ico" aria-hidden="true">👵</div><h3>Zvládne to aj babka</h3><p>Veľké písmo, pár tlačidiel a návod krok za krokom.</p></div>
-      <div><div class="ico" aria-hidden="true">🇸🇰</div><h3>Po slovensky, dáta v EÚ</h3><p>Robíme ju na Slovensku. Fotky sú uložené v Európskej únii.</p></div>
-    </div>
+    <h2>Jednoduché, súkromné a pre celú rodinu.</h2>
+    <ul class="vals">
+      <li><span class="ico c1" aria-hidden="true">📸</span><div><b>Jedna fotka denne, nič viac</b><p>Žiadne lajky, komentáre ani nekonečný feed.</p></div></li>
+      <li><span class="ico c2" aria-hidden="true">🔒</span><div><b>Len pre tvojich ľudí</b><p>Fotku vidia iba ľudia z tvojich kruhov.</p></div></li>
+      <li><span class="ico c3" aria-hidden="true">🧹</span><div><b>Bez histórie</b><p>Nová fotka nahradí tú starú a stará sa zmaže.</p></div></li>
+      <li><span class="ico c4" aria-hidden="true">👵</span><div><b>Zvládne to aj babka</b><p>Veľké písmo, pár tlačidiel a návod krok za krokom.</p></div></li>
+      <li><span class="ico c5" aria-hidden="true">🇸🇰</span><div><b>Po slovensky, dáta v EÚ</b><p>Robíme ju na Slovensku. Fotky sú uložené v Európskej únii.</p></div></li>
+    </ul>
   </div>
 </section>
 
-<section>
+<section style="padding-top:0">
   <div class="wrap">
     <div class="story">
+      <span class="mono">Pre koho to je</span>
       <blockquote>Babka v Prešove, syn s rodinou v Bratislave, vnučka na vysokej v Brne. Každý sa ráno odfotí a babka má všetkých na ploche telefónu.</blockquote>
       <p>Pre rodiny aj kamarátov, ktorí sú ďaleko od seba.</p>
     </div>
@@ -176,21 +208,23 @@ footer{padding:40px 0 56px;color:var(--muted);font-size:15px;display:flex;justif
 </section>
 
 <section class="cta" id="pridaj-sa">
-  <div class="wrap">
-    <h2>Vidíte sa každý deň. <em>Aj keď ste ďaleko.</em></h2>
-    <form class="join" novalidate>
-      <label class="hp">Nevypĺňaj <input name="web" tabindex="-1" autocomplete="off"></label>
-      <input type="email" name="email" required placeholder="tvoj@email.sk" aria-label="Tvoj e-mail" autocomplete="email">
-      <button type="submit">Pridať sa na zoznam</button>
-    </form>
-    <p class="msg" role="status" aria-live="polite"></p>
-    <p class="fine">Odoslaním súhlasíš, že tvoj e-mail použijeme len na to, aby sme ti dali vedieť o spustení. Kedykoľvek ho na požiadanie zmažeme.</p>
+  <div class="wrap box">
+    <h2>Vidíte sa každý deň. Aj keď ste ďaleko.</h2>
+    <div>
+      <form class="join" novalidate>
+        <label class="hp">Nevypĺňaj <input name="web" tabindex="-1" autocomplete="off"></label>
+        <input type="email" name="email" required placeholder="tvoj@email.sk" aria-label="Tvoj e-mail" autocomplete="email">
+        <button type="submit">Pridať sa →</button>
+      </form>
+      <p class="msg" role="status" aria-live="polite"></p>
+      <p class="fine">Odoslaním súhlasíš, že tvoj e-mail použijeme len na to, aby sme ti dali vedieť o spustení. Kedykoľvek ho na požiadanie zmažeme.</p>
+    </div>
   </div>
 </section>
 
 <div class="wrap">
-  <footer>
-    <span>© 2026 Kľúčenka (pracovný názov)</span>
+  <footer class="mono">
+    <span>© 2026 Kľúčenka · pracovný názov</span>
     <span>Vyrobené na Slovensku</span>
   </footer>
 </div>
