@@ -77,9 +77,8 @@ footer{margin-top:28px;padding-top:16px;border-top:1px solid #E2E5E9;font-size:1
 </div>
 
 <script>
-// Google Form that stores signups (responses land in its linked sheet).
-const FORM = "https://docs.google.com/forms/d/e/1FAIpQLSe2jCU2iQYQNQEAx4oPuvY78fW7-LNIgKsOGF9Z-ac9x--NqQ/formResponse";
-const ENTRY = "entry.995723584";
+// Waitlist API: a Cloudflare Worker that stores signups in a D1 database (see worker/).
+const API = "https://klucenka-waitlist.jergus-golian.workers.dev/join";
 const okEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
 
 document.querySelectorAll("form.join").forEach(f => f.addEventListener("submit", async e => {
@@ -91,8 +90,8 @@ document.querySelectorAll("form.join").forEach(f => f.addEventListener("submit",
   if (!okEmail(email)) { msg.textContent = "Skontroluj, prosím, e-mailovú adresu."; msg.classList.add("err"); f.email.focus(); return; }
   btn.disabled = true;
   try {
-    // no-cors: Google Forms returns an opaque response, so a network error is the only failure we can see
-    await fetch(FORM, { method: "POST", mode: "no-cors", body: new URLSearchParams({ [ENTRY]: email }) });
+    const res = await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, web: f.web.value }) });
+    if (!res.ok) throw new Error(res.status);
     f.reset();
     msg.textContent = "Ďakujeme! Si na zozname. Ozveme sa, keď bude appka pripravená.";
     msg.classList.add("ok");

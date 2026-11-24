@@ -1,0 +1,8 @@
+{
+  "name": "klucenka-waitlist",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-01",
+  "d1_databases": [
+    { "binding": "DB", "database_name": "klucenka-waitlist", "database_id": "136ba7e5-ed24-4e54-aae5-9c831a49ad3d" }
+  ]
+}
