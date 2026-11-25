@@ -8,7 +8,7 @@
 <meta property="og:title" content="Bopli — Jedna fotka ráno. Celý deň spolu.">
 <meta property="og:description" content="Súkromná fotka dňa pre rodinu a kamarátov na diaľku. Priamo na ploche telefónu.">
 <meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%231D7CF2'/><text x='32' y='46' font-size='40' font-weight='800' text-anchor='middle' fill='white' font-family='sans-serif'>B</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect x='4' y='14' width='56' height='44' rx='14' fill='%231D7CF2'/><rect x='22' y='6' width='20' height='10' rx='4' fill='%231559C0'/><circle cx='32' cy='36' r='14' fill='white'/><circle cx='32' cy='36' r='9' fill='%231B2B4B'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -38,13 +38,24 @@ form.join{margin-top:32px;display:flex;flex-direction:column;gap:14px;width:100%
 .msg.ok{color:#2B9B4B}.msg.err{color:#EA2B2B}
 .fine{font-size:14px;color:var(--muted);font-weight:600;max-width:440px}
 footer{padding:20px 24px;border-top:2px solid var(--line);text-align:center;font-size:13px;font-weight:700;color:#AFAFAF;letter-spacing:.04em;text-transform:uppercase}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
 <header><span class="logo" aria-hidden="true">B</span><span class="brand">Bopli</span></header>
 <main>
-  <svg class="mascot" viewBox="0 0 160 160" aria-hidden="true"><ellipse cx="80" cy="148" rx="46" ry="6" fill="#000" opacity=".08"/><g fill="none" stroke-linecap="round" stroke-linejoin="round"> <path d="M52 92 68 112 50 128 62 145" stroke="#1559C0" stroke-width="8"/> <path d="M52 92 68 112 50 128 62 145" stroke="#3E8FF5" stroke-width="3"/> <path d="M96 92 112 112 94 128 106 145" stroke="#1559C0" stroke-width="8"/> <path d="M96 92 112 112 94 128 106 145" stroke="#3E8FF5" stroke-width="3"/> <path d="M44 34 38 16" stroke="#1559C0" stroke-width="4"/></g><circle cx="38" cy="15" r="5" fill="#FFB020"/><circle cx="68" cy="112" r="4" fill="#DDEBFF"/><circle cx="50" cy="128" r="4" fill="#DDEBFF"/><circle cx="112" cy="112" r="4" fill="#DDEBFF"/><circle cx="94" cy="128" r="4" fill="#DDEBFF"/><rect x="54" y="22" width="28" height="14" rx="6" fill="#1559C0"/><rect x="30" y="32" width="96" height="66" rx="24" fill="#1D7CF2"/><circle cx="52" cy="82" r="3.5" fill="#7FB4FF"/><circle cx="64" cy="82" r="3.5" fill="#7FB4FF"/><circle cx="98" cy="64" r="27" fill="#1559C0"/><circle cx="98" cy="64" r="23" fill="#fff"/><circle cx="101" cy="64" r="15" fill="#1B2B4B"/><circle cx="107" cy="57" r="5.5" fill="#fff"/></svg>
+  <svg class="mascot" viewBox="0 0 132 132" aria-hidden="true">
+    <ellipse cx="66" cy="124" rx="38" ry="6" fill="#000" opacity=".07"/>
+    <rect x="44" y="12" width="36" height="16" rx="7" fill="#1559C0"/>
+    <rect x="14" y="26" width="104" height="94" rx="30" fill="#1559C0"/>
+    <rect x="14" y="22" width="104" height="94" rx="30" fill="#1D7CF2"/>
+    <rect x="26" y="30" width="38" height="8" rx="4" fill="#fff" opacity=".28"/>
+    <circle cx="100" cy="40" r="7" fill="#FFC53D"/>
+    <circle cx="66" cy="66" r="29" fill="#fff"/>
+    <g class="pupil"><circle cx="66" cy="66" r="20" fill="#1B2B4B"/><circle cx="73" cy="58" r="7" fill="#fff"/><circle cx="60" cy="74" r="3" fill="#fff" opacity=".7"/></g>
+    <circle cx="30" cy="96" r="6" fill="#7FB4FF"/><circle cx="102" cy="96" r="6" fill="#7FB4FF"/>
+    <path d="M54 98q12 10 24 0" stroke="#1B2B4B" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+  </svg>
   <h1>Jedna fotka ráno.<br>Celý deň spolu.</h1>
   <p class="lead">Každé ráno sa odfotíš a tvoja rodina a kamaráti ťa celý deň vidia vo widgete na ploche telefónu. Čoskoro pre iPhone.</p>
   <form class="join" novalidate>
