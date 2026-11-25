@@ -58,7 +58,7 @@ footer{padding:20px 24px;border-top:2px solid var(--line);text-align:center;font
 
 <script>
 // Waitlist API: a Cloudflare Worker that stores signups in a D1 database (see worker/).
-const API = "https://klucenka-waitlist.jergus-golian.workers.dev/join";
+const API = "https://bopli-waitlist.jergus-golian.workers.dev/join";
 const okEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
 
 document.querySelectorAll("form.join").forEach(f => f.addEventListener("submit", async e => {

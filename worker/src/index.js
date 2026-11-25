@@ -1,4 +1,4 @@
-// Kľúčenka waitlist API: POST /join {email, web} -> stores the email in D1.
+// Bopli waitlist API: POST /join {email, web} -> stores the email in D1.
 const ALLOWED_ORIGINS = ["https://jergusino.github.io"];
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
