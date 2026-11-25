@@ -19,9 +19,9 @@ body{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;backg
 header{padding:18px 24px}
 .brand{font-weight:800;font-size:28px;letter-spacing:-.01em;color:var(--blue)}
 main{flex:1;width:100%;max-width:560px;margin:0 auto;padding:40px 24px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.mascot{width:150px;height:125px;margin-bottom:20px}
 h1{font:800 clamp(30px,6vw,40px)/1.2 var(--sans);color:var(--ink);margin-bottom:14px}
 .lead{font-size:18px;color:var(--muted);font-weight:600;max-width:460px}
-.mascot{width:150px;height:auto;margin-bottom:24px}
 form.join{margin-top:32px;display:flex;flex-direction:column;gap:14px;width:100%}
 .join input[type=email]{width:100%;font:700 17px var(--sans);padding:0 18px;height:56px;border:2px solid var(--line);border-radius:16px;background:#F7F7F7;color:var(--ink);transition:border-color .15s,background .15s}
 .join input[type=email]::placeholder{color:#AFAFAF}
@@ -43,18 +43,7 @@ footer{padding:20px 24px;border-top:2px solid var(--line);text-align:center;font
 <body>
 <header><span class="brand">Bopli</span></header>
 <main>
-  <svg class="mascot" viewBox="0 0 160 120" aria-hidden="true">
-    <ellipse cx="78" cy="112" rx="40" ry="6" fill="#000" opacity=".07"/>
-    <path d="M118 60 152 28Q158 24 158 32V88Q158 96 152 92Z" fill="#1559C0" stroke="#1559C0" stroke-width="8" stroke-linejoin="round"/>
-    <path d="M70 18 92 2Q98 0 98 8L94 28Z" fill="#1559C0" stroke="#1559C0" stroke-width="6" stroke-linejoin="round"/>
-    <ellipse cx="74" cy="62" rx="64" ry="48" fill="#1D7CF2"/>
-    <ellipse cx="72" cy="82" rx="42" ry="22" fill="#DDEBFF"/>
-    <path d="M118 60 152 28Q158 24 158 32V88Q158 96 152 92Z" fill="#1D7CF2"/>
-    <circle cx="44" cy="46" r="17" fill="#fff"/><circle cx="76" cy="46" r="17" fill="#fff"/>
-    <circle cx="47" cy="48" r="7" fill="#1B2B4B"/><circle cx="73" cy="48" r="7" fill="#1B2B4B"/>
-    <circle cx="49" cy="45" r="2.4" fill="#fff"/><circle cx="75" cy="45" r="2.4" fill="#fff"/>
-    <path d="M52 72Q60 82 68 72" fill="none" stroke="#1B2B4B" stroke-width="4" stroke-linecap="round"/>
-  </svg>
+  <svg class="mascot" aria-hidden="true" viewBox="0 0 120 100"> <path d="M112 52C112 30 90 16 66 16C48 16 36 26 29 37L12 23C8 20 3 23 5 28L16 52L5 76C3 81 8 84 12 81L29 67C36 78 48 88 66 88C90 88 112 74 112 52Z" fill="#1D7CF2" stroke="#1D7CF2" stroke-width="6" stroke-linejoin="round"/> <circle cx="80" cy="44" r="14" fill="#fff"/> <circle cx="84" cy="45" r="7.5" fill="#1B2B4B"/> <circle cx="86.5" cy="42" r="2.6" fill="#fff"/> </svg>
   <h1>Jedna fotka ráno.<br>Celý deň spolu.</h1>
   <p class="lead">Každé ráno sa odfotíš a tvoja rodina a kamaráti ťa celý deň vidia vo widgete na ploche telefónu. Čoskoro pre iPhone.</p>
   <form class="join" novalidate>
