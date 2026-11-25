@@ -1,4 +1,4 @@
-# Kľúčenka waitlist
+# Bopli waitlist
 
 Single-page landing with a waitlist signup.
 

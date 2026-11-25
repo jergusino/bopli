@@ -3,78 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kľúčenka — Jedna fotka ráno. Celý deň spolu.</title>
+<title>Bopli — Jedna fotka ráno. Celý deň spolu.</title>
 <meta name="description" content="Každé ráno sa odfotíš a tvoja rodina a kamaráti ťa celý deň vidia vo widgete na ploche telefónu. Pridaj sa na zoznam čakateľov.">
-<meta property="og:title" content="Kľúčenka — Jedna fotka ráno. Celý deň spolu.">
+<meta property="og:title" content="Bopli — Jedna fotka ráno. Celý deň spolu.">
 <meta property="og:description" content="Súkromná fotka dňa pre rodinu a kamarátov na diaľku. Priamo na ploche telefónu.">
-<meta name="theme-color" content="#E9ECEF">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23272727'/><circle cx='32' cy='34' r='12' fill='none' stroke='%23AEE4F2' stroke-width='5'/><rect x='22' y='14' width='20' height='8' fill='%23AEE4F2'/></svg>">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%231D7CF2'/><text x='32' y='46' font-size='40' font-weight='800' text-anchor='middle' fill='white' font-family='sans-serif'>B</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1A1A1A;--muted:#555;--sans:"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif}
+:root{--blue:#1D7CF2;--blue-d:#1559C0;--blue-l:#DDEBFF;--ink:#3C3C3C;--muted:#777;--line:#E5E5E5;--sans:"Nunito","DIN Round Pro","Varela Round",system-ui,-apple-system,"Segoe UI",sans-serif}
 *{box-sizing:border-box;margin:0}
-html{background:#E9ECEF}
-body{min-height:100vh;min-height:100svh;display:grid;place-items:center;padding:24px 16px;
-  background:repeating-linear-gradient(#FFFFFF 0 2px,#EEF0F2 2px 4px);color:var(--ink);font:15px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
-
-.win{width:100%;max-width:620px;background:#fff;border:1px solid rgba(0,0,0,.4);border-radius:10px 10px 7px 7px;overflow:hidden;
-  box-shadow:0 22px 50px -12px rgba(0,0,0,.45)}
-.tb{height:30px;display:flex;align-items:center;justify-content:center;position:relative;border-bottom:1px solid #8E949C;
-  background:repeating-linear-gradient(rgba(255,255,255,.55) 0 1px,transparent 1px 2px),linear-gradient(#F5F6F8,#D4D8DE 55%,#C3C8CF);
-  font:700 13px var(--sans);color:#222;text-shadow:0 1px 0 rgba(255,255,255,.8)}
-.lights{position:absolute;left:12px;top:7px;display:flex;gap:8px}
-.lights i{width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.35);
-  background:radial-gradient(circle at 50% 22%,rgba(255,255,255,.95) 0 18%,transparent 42%),radial-gradient(circle at 50% 85%,var(--l2),var(--l1) 70%)}
-.lights i:nth-child(1){--l1:#E0342A;--l2:#FF9A8F}.lights i:nth-child(2){--l1:#E09A0E;--l2:#FFE08A}.lights i:nth-child(3){--l1:#2EA52A;--l2:#A6F29A}
-main{padding:44px 48px 40px}
-
-h1{font:700 clamp(32px,6vw,44px)/1.12 var(--sans);letter-spacing:-.03em;margin-bottom:16px}
-.lead{font-size:17px;color:var(--muted)}
-
-/* aqua gel button */
-.aqua{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:12px;
-  height:52px;padding:0 30px;border:2px solid #2A3FBF;border-radius:999px;cursor:pointer;font:700 17px var(--sans);color:#0B0B1E;
-  background:linear-gradient(#A9CCFF 0%,#7FB2FF 48%,#5C9BFF 52%,#B4E1FF 100%);
-  box-shadow:inset 0 -3px 8px rgba(255,255,255,.55),inset 0 2px 3px rgba(0,0,0,.18),0 3px 8px -2px rgba(0,0,0,.3);transition:filter .15s,transform .1s}
-.aqua::before{content:"";position:absolute;left:12px;right:12px;top:3px;height:44%;border-radius:999px;
-  background:linear-gradient(rgba(255,255,255,.95),rgba(255,255,255,.2));pointer-events:none}
-.aqua>*{position:relative}
-.aqua svg{width:22px;height:18px;flex:none}
-.aqua:hover{filter:brightness(1.06) saturate(1.15)}
-.aqua:active{transform:translateY(1px);filter:brightness(.92) saturate(1.25)}
-.aqua:disabled{filter:grayscale(.8);opacity:.75;cursor:wait}
-
-form.join{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
-.join input[type=email]{flex:1 1 220px;font:16px var(--sans);padding:0 22px;height:52px;border:1px solid #8E949C;border-top-color:#5E646C;border-radius:999px;background:#fff;color:var(--ink);
-  box-shadow:inset 0 2px 3px rgba(0,0,0,.22)}
-.join input[type=email]::placeholder{color:#9A9A9A}
-.join input[type=email]:focus{outline:none;border-color:#3A7BE8;box-shadow:inset 0 2px 3px rgba(0,0,0,.2),0 0 0 4px rgba(84,150,255,.55)}
+html{background:#fff}
+body{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;background:#fff;color:var(--ink);font:500 17px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+header{padding:18px 24px;display:flex;align-items:center;gap:10px}
+.logo{width:38px;height:38px;border-radius:12px;background:var(--blue);box-shadow:0 4px 0 var(--blue-d);display:grid;place-items:center;color:#fff;font-weight:800;font-size:22px}
+.brand{font-weight:800;font-size:28px;letter-spacing:-.01em;color:var(--blue)}
+main{flex:1;width:100%;max-width:560px;margin:0 auto;padding:40px 24px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.mascot{width:132px;height:132px;margin-bottom:24px}
+h1{font:800 clamp(30px,6vw,40px)/1.2 var(--sans);color:var(--ink);margin-bottom:14px}
+.lead{font-size:18px;color:var(--muted);font-weight:600;max-width:460px}
+form.join{margin-top:32px;display:flex;flex-direction:column;gap:14px;width:100%}
+.join input[type=email]{width:100%;font:700 17px var(--sans);padding:0 18px;height:56px;border:2px solid var(--line);border-radius:16px;background:#F7F7F7;color:var(--ink);transition:border-color .15s,background .15s}
+.join input[type=email]::placeholder{color:#AFAFAF}
+.join input[type=email]:focus{outline:none;border-color:var(--blue);background:#fff}
 .join .hp{position:absolute;left:-9999px}
-:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(84,150,255,.6)}
-.msg{font-size:13px;font-weight:700;margin-top:12px;min-height:1.5em}
-.msg.ok{color:#2A7A3E}.msg.err{color:#B3261E}
-.fine{font-size:12.5px;color:var(--muted)}
-footer{margin-top:28px;padding-top:16px;border-top:1px solid #E2E5E9;font-size:12px;color:#777}
-
-@media (max-width:520px){main{padding:30px 22px 26px}.aqua{width:100%}}
+.btn{display:inline-flex;align-items:center;justify-content:center;width:100%;height:54px;padding:0 24px;border:0;border-radius:16px;cursor:pointer;
+  font:800 16px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--blue);box-shadow:0 5px 0 var(--blue-d);transition:filter .12s,transform .08s,box-shadow .08s}
+.btn:hover{filter:brightness(1.07)}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--blue-d)}
+.btn:disabled{background:#E5E5E5;color:#AFAFAF;box-shadow:0 5px 0 #CFCFCF;cursor:wait;filter:none}
+:focus-visible{outline:3px solid var(--blue-l);outline-offset:2px}
+.msg{font-size:15px;font-weight:700;margin-top:14px;min-height:1.5em}
+.msg.ok{color:#2B9B4B}.msg.err{color:#EA2B2B}
+.fine{font-size:14px;color:var(--muted);font-weight:600;max-width:440px}
+footer{padding:20px 24px;border-top:2px solid var(--line);text-align:center;font-size:13px;font-weight:700;color:#AFAFAF;letter-spacing:.04em;text-transform:uppercase}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<div class="win">
-  <div class="tb"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span>Kľúčenka</span></div>
-  <main>
-    <h1>Jedna fotka ráno.<br>Celý deň spolu.</h1>
-    <p class="lead">Každé ráno sa odfotíš a tvoja rodina a kamaráti ťa celý deň vidia vo widgete na ploche telefónu. Čoskoro pre iPhone.</p>
-    <form class="join" novalidate>
-      <label class="hp">Nevypĺňaj <input name="web" tabindex="-1" autocomplete="off"></label>
-      <input type="email" name="email" required placeholder="tvoj@email.sk" aria-label="Tvoj e-mail" autocomplete="email">
-      <button class="aqua" type="submit"><svg viewBox="0 0 22 18" aria-hidden="true"><rect x="1" y="1" width="20" height="16" rx="2.5" fill="#0B0B1E"/><path d="M2.5 3 11 9.5 19.5 3" fill="none" stroke="#9CC6FF" stroke-width="2" stroke-linejoin="round"/></svg><span>Pridať sa</span></button>
-    </form>
-    <p class="msg" role="status" aria-live="polite"></p>
-    <p class="fine">Napíšeme ti len raz, keď bude appka pripravená. E-mail na požiadanie kedykoľvek zmažeme.</p>
-    <footer>© 2026 Kľúčenka · Vyrobené na Slovensku</footer>
-  </main>
-</div>
+<header><span class="logo" aria-hidden="true">B</span><span class="brand">Bopli</span></header>
+<main>
+  <svg class="mascot" viewBox="0 0 132 132" aria-hidden="true"><ellipse cx="66" cy="120" rx="34" ry="7" fill="#000" opacity=".07"/><rect x="18" y="14" width="96" height="100" rx="44" fill="#1D7CF2"/><rect x="18" y="14" width="96" height="100" rx="44" fill="none" stroke="#1559C0" stroke-width="0"/><ellipse cx="66" cy="84" rx="34" ry="26" fill="#DDEBFF"/><circle cx="48" cy="52" r="17" fill="#fff"/><circle cx="84" cy="52" r="17" fill="#fff"/><circle cx="51" cy="54" r="7" fill="#1B2B4B"/><circle cx="81" cy="54" r="7" fill="#1B2B4B"/><circle cx="53" cy="51" r="2.4" fill="#fff"/><circle cx="83" cy="51" r="2.4" fill="#fff"/><path d="M58 70 66 80 74 70Z" fill="#FFB020"/></svg>
+  <h1>Jedna fotka ráno.<br>Celý deň spolu.</h1>
+  <p class="lead">Každé ráno sa odfotíš a tvoja rodina a kamaráti ťa celý deň vidia vo widgete na ploche telefónu. Čoskoro pre iPhone.</p>
+  <form class="join" novalidate>
+    <label class="hp">Nevypĺňaj <input name="web" tabindex="-1" autocomplete="off"></label>
+    <input type="email" name="email" required placeholder="tvoj@email.sk" aria-label="Tvoj e-mail" autocomplete="email">
+    <button class="btn" type="submit">Pridať sa</button>
+  </form>
+  <p class="msg" role="status" aria-live="polite"></p>
+  <p class="fine">Napíšeme ti len raz, keď bude appka pripravená. E-mail na požiadanie kedykoľvek zmažeme.</p>
+</main>
+<footer>© 2026 Bopli · Vyrobené na Slovensku</footer>
 
 <script>
 // Waitlist API: a Cloudflare Worker that stores signups in a D1 database (see worker/).
