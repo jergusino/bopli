@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bopli explainer</title>
+<style>
+@font-face{font-family:"In";src:url(fonts/inter-latin-200-normal.woff2)format("woff2");font-weight:200}
+@font-face{font-family:"In";src:url(fonts/inter-latin-300-normal.woff2)format("woff2");font-weight:300}
+@font-face{font-family:"In";src:url(fonts/inter-latin-400-normal.woff2)format("woff2");font-weight:400}
+@font-face{font-family:"In";src:url(fonts/inter-latin-500-normal.woff2)format("woff2");font-weight:500}
+@font-face{font-family:"In";src:url(fonts/inter-latin-600-normal.woff2)format("woff2");font-weight:600}
+@font-face{font-family:"In";src:url(fonts/inter-latin-700-normal.woff2)format("woff2");font-weight:700}
+@font-face{font-family:"In";src:url(fonts/inter-latin-800-normal.woff2)format("woff2");font-weight:800}
+@font-face{font-family:"Ser";src:url(fonts/instrument-serif-latin-400-italic.woff2)format("woff2");font-style:italic}
+@font-face{font-family:"Hand";src:url(fonts/caveat-latin-700-normal.woff2)format("woff2");font-weight:700}
+@font-face{font-family:"Nun";src:url(fonts/nunito-latin-800-normal.woff2)format("woff2");font-weight:800}
+:root{--paper:#ECECE8;--ink:#161616;--blue:#1D7CF2;--blue-d:#1559C0;--gold:#A8770E;--hl:rgba(222,212,160,.62)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1440px;height:1080px;overflow:hidden;background:#000}
+#stage{position:absolute;left:0;top:0;width:1440px;height:1080px;overflow:hidden;font-family:"In","Noto Color Emoji",sans-serif;color:var(--ink);background:#000}
+.scene{position:absolute;inset:0;overflow:hidden;display:none}
+.abs{position:absolute}
+.emo{font-family:"Noto Color Emoji";font-weight:400}
+.cap{position:absolute;left:0;right:0;top:972px;text-align:center;font:700 15px/1 "Liberation Mono","DejaVu Sans Mono",monospace;letter-spacing:.02em;z-index:50;white-space:pre}
+.handle{position:absolute;width:6px;background:var(--gold);border-radius:3px}
+.handle i{position:absolute;left:50%;width:34px;height:34px;margin-left:-17px;border-radius:50%;background:var(--gold)}
+.vf{position:absolute;overflow:hidden}
+svg{display:block}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- S1 typing -->
+  <div class="scene" id="s1">
+    <div class="abs" id="s1cam" style="left:0;top:0;width:1440px;height:1080px;transform-origin:720px 540px">
+      <div class="abs" id="s1line" style="top:486px;height:110px;white-space:nowrap">
+        <div class="abs" id="s1hl" style="top:2px;height:108px;background:var(--hl)"></div>
+        <div class="abs" id="s1one" style="top:-6px;font:italic 400 118px/1 'Ser';color:var(--ink)">one</div>
+        <div class="abs" id="s1word" style="top:6px;font:600 92px/1 'In';letter-spacing:-.02em"></div>
+        <div class="abs" id="s1typed" style="top:6px;font:500 92px/1 'In';letter-spacing:-.02em"></div>
+        <div class="abs" id="s1dots" style="top:104px;height:14px"></div>
+        <div class="abs" id="s1caret" style="top:6px;width:6px;height:96px;background:#222;border-radius:2px"></div>
+        <div class="handle" id="s1hL" style="top:-4px;height:116px"><i style="top:-26px"></i></div>
+        <div class="handle" id="s1hR" style="top:-4px;height:116px"><i style="bottom:-26px"></i></div>
+        <svg class="abs" id="s1slash" width="80" height="110" viewBox="0 0 80 110" style="top:0"><path id="s1slashp" d="M58 8 L22 100" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none"/></svg>
+        <div class="abs" id="s1badge" style="top:-4px;width:118px;height:118px;border-radius:50%;background:var(--blue);border:6px solid #fff;box-shadow:0 0 0 3px #0B3D85 inset">
+          <svg viewBox="0 0 120 100" width="78" height="66" style="position:absolute;left:14px;top:20px"><path d="M108 46C97 27 82 16 64 16C48 16 37 25 29 37L12 23C8 20 3 23 5 28L16 52L5 76C3 81 8 84 12 81L29 67C37 79 48 88 64 88C82 88 97 77 108 58Q112 52 108 46Z" fill="#fff" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><circle cx="75" cy="44" r="13" fill="#1D7CF2"/><circle cx="79" cy="45" r="7" fill="#0E2A57"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="abs" id="s1bloom" style="left:720px;top:540px;width:0;height:0;border-radius:50%;background:#fff"></div>
+  </div>
+
+  <!-- S2 distance tracker -->
+  <div class="scene" id="s2" style="background:linear-gradient(180deg,#2C8BF6 0%,#1D74E6 45%,#0F55B8 100%)">
+    <div class="abs" id="s2all" style="inset:0">
+      <div class="abs" style="left:52px;top:52px;color:#fff">
+        <div style="font:600 13px/1 'In';letter-spacing:.08em;opacity:.62">SHARING</div>
+        <div style="font:600 19px/1.4 'In'">Mom's Bopli widget</div>
+      </div>
+      <div class="abs" style="left:1366px;top:58px;width:22px;height:46px;border-radius:12px;background:#08142A"></div>
+      <div class="abs" id="s2ring" style="border-radius:50%;background:rgba(255,255,255,.3)"></div>
+      <div class="abs" id="s2coinwrap" style="left:548px;top:368px;width:344px;height:344px;perspective:1400px">
+        <div class="abs" id="s2coin" style="inset:0;transform-style:preserve-3d"></div>
+      </div>
+      <div class="abs" id="s2num" style="left:52px;top:842px;color:#fff;font:400 58px/1 'In';letter-spacing:-.01em"></div>
+      <div class="abs" id="s2lab" style="left:52px;top:912px;color:rgba(255,255,255,.78);font:400 58px/1 'In';letter-spacing:-.01em;white-space:nowrap"></div>
+      <div class="abs" id="s2here" style="left:52px;top:912px;color:#fff;font:500 58px/1 'In'">right here</div>
+    </div>
+  </div>
+
+  <!-- S3 photo cuts -->
+  <div class="scene" id="s3">
+    <div class="abs" id="s3shots" style="inset:0"></div>
+    <div class="abs" id="s3chrome" style="right:22px;top:0;bottom:0;width:60px"></div>
+  </div>
+
+  <!-- S4 line circle + rings, frame shrinks into shutter -->
+  <div class="scene" id="s4" style="background:#0B0B0B">
+    <div class="abs" id="s4frame" style="overflow:hidden;background:var(--paper)">
+      <div class="abs" id="s4inner" style="left:0;top:0;width:1440px;height:1080px;transform-origin:0 0">
+        <svg class="abs" id="s4svg" width="1440" height="1080" style="left:0;top:0"></svg>
+        <div class="abs" id="s4rings" style="left:720px;top:510px;width:0;height:0"></div>
+      </div>
+      <div class="abs" id="s4white" style="inset:0;background:#F4F4F2;opacity:0"></div>
+    </div>
+  </div>
+
+  <!-- S5 camera -->
+  <div class="scene" id="s5" style="background:#0B0B0B">
+    <div class="abs" id="s5top" style="left:0;right:0;top:52px;height:40px;color:#fff">
+      <svg class="abs" id="s5x" style="left:398px;top:6px" width="26" height="26" viewBox="0 0 26 26"><path d="M4 4L22 22M22 4L4 22" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
+      <div class="abs" id="s5title" style="left:0;right:0;top:6px;text-align:center;font:600 21px/1 'In'"></div>
+      <svg class="abs" id="s5grid" style="left:1018px;top:5px" width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#fff" stroke-width="2.4"><rect x="3" y="3" width="9" height="9" rx="2"/><rect x="16" y="3" width="9" height="9" rx="2"/><rect x="3" y="16" width="9" height="9" rx="2"/><rect x="16" y="16" width="9" height="9" rx="2"/></svg>
+    </div>
+    <div class="vf" id="s5vf"><div class="abs" id="s5scene" style="left:0;top:0;width:700px;height:700px"></div></div>
+    <div class="abs" id="s5flash" style="width:64px;height:64px;border-radius:50%;background:#1E1E1E"><svg width="64" height="64" viewBox="0 0 64 64"><path d="M34 16L22 35h9l-3 13 13-20h-9l3-12z" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><path d="M18 18L46 46" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg></div>
+    <div class="abs" id="s5flip" style="width:64px;height:64px;border-radius:50%;background:#1E1E1E"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M44 27a13 13 0 0 0-23-5"/><path d="M20 37a13 13 0 0 0 23 5"/><path d="M21 15v8h8"/><path d="M43 49v-8h-8"/></svg></div>
+    <div class="abs" id="s5btn" style="border-radius:50%;background:#F4F4F2"></div>
+  </div>
+
+  <!-- S6 canvas board -->
+  <div class="scene" id="s6" style="background:#EDEDE9">
+    <div class="abs" id="s6dots" style="inset:-200px;background-image:radial-gradient(circle,#C9C9C4 1.6px,transparent 2px);background-size:26px 26px"></div>
+    <div class="abs" id="s6world" style="inset:0;perspective:1600px;perspective-origin:720px 540px"></div>
+    <div class="abs" style="left:34px;top:30px;font:700 21px/1 'In';color:#111">Today <span style="font-weight:500;color:#999;font-size:16px">⌄</span></div>
+    <div class="abs" id="s6side" style="left:1376px;top:30px;width:44px;height:200px"></div>
+    <div class="abs" id="s6tools" style="left:30px;top:960px;width:600px;height:84px;border-radius:42px;background:rgba(255,255,255,.92);box-shadow:0 8px 30px rgba(0,0,0,.14)"></div>
+    <div class="abs" id="s6dark" style="inset:0;background:#0B0B0B;opacity:0"></div>
+  </div>
+
+  <!-- S7 big word -->
+  <div class="scene" id="s7" style="background:#0B0B0B;perspective:1100px;perspective-origin:720px 540px">
+    <div class="abs" id="s7word" style="left:720px;top:540px;width:0;height:0;transform-style:preserve-3d"></div>
+  </div>
+
+  <!-- S8 + S9 line, chat -->
+  <div class="scene" id="s8" style="background:var(--paper)">
+    <div class="abs" id="s8cam" style="left:0;top:0;width:1440px;height:1080px;transform-origin:0 0">
+      <div class="abs" id="s8chat" style="inset:0"></div>
+      <div class="abs" id="s8line" style="left:0;top:0;height:140px;white-space:nowrap"></div>
+    </div>
+  </div>
+
+  <!-- S10 glitch + end -->
+  <div class="scene" id="s10" style="background:#0A0A0A">
+    <div class="abs" id="s10glitch" style="inset:0"></div>
+    <svg class="abs" id="s10spin" width="40" height="40" viewBox="-20 -20 40 40" style="left:700px;top:520px"></svg>
+    <div class="abs" id="s10mark" style="left:0;right:0;top:470px;text-align:center;color:#fff;opacity:0">
+      <div style="display:inline-flex;align-items:center;gap:14px">
+        <svg viewBox="0 0 120 100" width="92" height="77"><path d="M108 46C97 27 82 16 64 16C48 16 37 25 29 37L12 23C8 20 3 23 5 28L16 52L5 76C3 81 8 84 12 81L29 67C37 79 48 88 64 88C82 88 97 77 108 58Q112 52 108 46Z" fill="#1D7CF2" stroke="#1D7CF2" stroke-width="8" stroke-linejoin="round"/><circle cx="75" cy="44" r="13" fill="#fff"/><circle cx="79" cy="45" r="7" fill="#1B2B4B"/></svg>
+        <span style="font:800 80px/1 'Nun';color:#1D7CF2;letter-spacing:-.01em">Bopli</span>
+      </div>
+      <div style="font:700 15px/1 'Liberation Mono',monospace;color:rgba(255,255,255,.55);margin-top:22px;letter-spacing:.04em">one photo a day · coming soon to iPhone · join the waitlist</div>
+    </div>
+  </div>
+
+  <div class="cap" id="cap"></div>
+  <canvas id="grain" width="480" height="360" style="position:absolute;inset:0;width:1440px;height:1080px;mix-blend-mode:overlay;opacity:0;pointer-events:none;z-index:60"></canvas>
+</div>
+
+<script>
+"use strict";
+const W = 1440, H = 1080, DUR = 18.84;
+const $ = id => document.getElementById(id);
+
+/* ---------- math ---------- */
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+const P = (t, a, b) => clamp((t - a) / (b - a));
+const E = {
+  lin: p => p,
+  out: p => 1 - Math.pow(1 - p, 3),
+  in: p => p * p * p,
+  io: p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2,
+  sine: p => -(Math.cos(Math.PI * p) - 1) / 2,
+  xo: p => p >= 1 ? 1 : 1 - Math.pow(2, -10 * p),
+  xio: p => p <= 0 ? 0 : p >= 1 ? 1 : p < .5 ? Math.pow(2, 20 * p - 10) / 2 : (2 - Math.pow(2, -20 * p + 10)) / 2,
+  back: p => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); },
+};
+// damped spring 0 -> 1, s = seconds since start
+const spring = (s, w = 18, z = .42) => s <= 0 ? 0 : 1 - Math.exp(-z * w * s) * (Math.cos(w * Math.sqrt(1 - z * z) * s) + z / Math.sqrt(1 - z * z) * Math.sin(w * Math.sqrt(1 - z * z) * s));
+// keyframes: [[t, v, ease], ...]; ease shapes the segment arriving at that key
+function K(t, keys) {
+  if (t <= keys[0][0]) return keys[0][1];
+  for (let i = 1; i < keys.length; i++) {
+    const [t1, v1, e] = keys[i];
+    if (t <= t1) { const [t0, v0] = keys[i - 1]; return lerp(v0, v1, (E[e || 'io'])(P(t, t0, t1))); }
+  }
+  return keys[keys.length - 1][1];
+}
+// smooth handheld noise
+const wob = (t, s = 1, f = 1) => s * (Math.sin(t * 2.1 * f + 1.3) * .6 + Math.sin(t * 3.7 * f + .2) * .3 + Math.sin(t * 7.3 * f + 2.1) * .1);
+function rng(seed) { let s = seed >>> 0 || 1; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
+
+const mctx = document.createElement('canvas').getContext('2d');
+const mw = (txt, font) => { mctx.font = font; return mctx.measureText(txt).width; };
+
+const FISH = '<path d="M108 46C97 27 82 16 64 16C48 16 37 25 29 37L12 23C8 20 3 23 5 28L16 52L5 76C3 81 8 84 12 81L29 67C37 79 48 88 64 88C82 88 97 77 108 58Q112 52 108 46Z"';
+
+/* ---------- illustrations ---------- */
+const PEOPLE = [
+  ['photos/person-mom.jpg', '50% 30%'], ['photos/person-dad.jpg', '50% 22%'], ['photos/person-sister.jpg', '50% 25%'],
+  ['photos/person-grandma.jpg', '62% 35%'], ['photos/person-you.jpg', '50% 22%']];
+function avatar(k) { const [src, pos] = PEOPLE[k]; return `<img src="${src}" style="display:block;width:100%;height:100%;object-fit:cover;object-position:${pos}">`; }
+const shot = (src, pos, extra = '') => `<img src="${src}" style="position:absolute;inset:0;width:1440px;height:1080px;object-fit:cover;object-position:${pos}">${extra}`;
+function shotSunrise() { return shot('photos/shot-sunrise.jpg', '50% 50%', `<svg class="abs" width="1440" height="1080" style="left:0;top:0"><circle id="sunring" cx="338" cy="398" r="120" fill="none" stroke="#fff" stroke-width="5" opacity="0"/></svg>`); }
+function shotHome() { return shot('photos/shot-homescreen.jpg', '50% 50%'); }
+function shotCoffee() { return shot('photos/shot-latte.jpg', '50% 28%'); }
+function shotLock() { return shot('photos/shot-lens.jpg', '50% 45%'); }
+function deskScene() { return ''; }
+function phoneNote() {
+  return `<div class="abs" id="s5phone" style="left:-40px;top:-40px;width:780px;height:780px"><img src="photos/person-you.jpg" style="width:100%;height:100%;object-fit:cover;object-position:50% 20%"></div>
+    <div class="abs" id="s5w1" style="left:56px;top:430px;padding:0 40px 10px 6px;font:700 112px/1 'Hand';color:#fff;transform:rotate(-8deg);text-shadow:0 3px 14px rgba(0,0,0,.35)">good</div>
+    <div class="abs" id="s5w2" style="left:150px;top:530px;padding:0 40px 10px 6px;font:700 100px/1 'Hand';color:#fff;transform:rotate(-6deg);white-space:nowrap;text-shadow:0 3px 14px rgba(0,0,0,.35)">morning</div>
+    <div class="abs" id="s5w3" style="left:330px;top:410px;font:700 74px/1 'Hand';color:#FFD34D;text-shadow:0 3px 14px rgba(0,0,0,.35)">☀</div>
+    <div class="abs" id="s5thumb" style="display:none"></div>`;
+}
+
+/* ---------- caption track ---------- */
+const CAPS = [[0, 'one photo'], [1.08, 'every single morning'], [1.62, 'from wherever they are'], [3.0, '(right here)'], [3.6, 'on their home screen'], [4.2, 'all day, together.'], [5.6, 'snap one. send it. done.'], [7.9, 'to the people you pick'], [10.55, 'miles apart'], [11.95, 'still close..'], [13.1, 'they saw your morning'], [14.62, 'bopli is coming soon'], [16.1, '']];
+function caption(t) {
+  let s = ''; for (const [a, txt] of CAPS) if (t >= a) s = txt;
+  const el = $('cap'); el.textContent = s;
+  const dark = (t >= 1.08 && t < 4.2) || (t >= 5.45 && t < 7.9) || (t >= 9.9 && t < 11.1) || t >= 16.1;
+  el.style.color = dark ? 'rgba(255,255,255,.82)' : 'rgba(20,20,20,.8)';
+}
+
+/* =====================================================================
+   S1  typing: "one [photo] evry mornig" -> "one photo every morning" + badge
+   ===================================================================== */
+const S1 = {};
+function initS1() {
+  S1.F1 = "600 92px In"; S1.F2 = "500 92px In";
+  const ls = -.02 * 92;
+  S1.word = 'photo'; S1.typo = 'evry mornig'; S1.fix = 'every morning';
+  S1.wOne = mw('one', "italic 400 118px Ser");
+  S1.wTimes = [...S1.word].map((_, i) => .24 + i * .055);
+  S1.tTimes = [...S1.typo].map((_, i) => .53 + i * .041);
+  S1.cw = s => [...s].map((c, i) => mw(s.slice(0, i + 1), i ? S1.F2 : S1.F2) - mw(s.slice(0, i), S1.F2) + ls);
+  S1.wordW = [...S1.word].map((c, i) => mw(S1.word.slice(0, i + 1), S1.F1) - mw(S1.word.slice(0, i), S1.F1) + ls);
+  S1.typoW = S1.cw(S1.typo); S1.fixW = mw(S1.fix, S1.F2) + ls * S1.fix.length;
+  let d = ''; for (let i = 0; i < 40; i++) d += `<i style="position:absolute;top:0;left:${i * 17}px;width:12px;height:12px;border-radius:50%;background:#C8102E;opacity:0"></i>`;
+  $('s1dots').innerHTML = d;
+}
+function renderS1(t) {
+  const g = (times, ws, k = .09) => times.reduce((a, tt, i) => a + ws[i] * E.out(P(t, tt, tt + k)), 0);
+  const gx = 18, oneX = 0, hlL = S1.wOne + gx;
+  const wordW = g(S1.wTimes, S1.wordW);
+  const hlR = hlL + 14 + Math.max(wordW, 6) + 12;
+  const fixed = t >= 1.08;
+  const typedW = fixed ? lerp(g(S1.tTimes, S1.typoW), S1.fixW, E.xo(P(t, 1.06, 1.16))) : g(S1.tTimes, S1.typoW);
+  const typX = hlR + 30;
+  const badgeIn = P(t, 1.2, 1.34);
+  const total = typX + typedW + 14 + (t > 1.12 ? 160 * E.out(P(t, 1.12, 1.3)) : 0);
+  const sc = K(t, [[0, 1.06], [1.0, 1.0, 'sine'], [1.14, .84, 'xo'], [1.5, .87, 'sine'], [1.6, 1.25, 'in']]);
+  const line = $('s1line');
+  line.style.left = (720 - total / 2) + 'px';
+  $('s1cam').style.transform = `translate(${wob(t, 3)}px,${wob(t + 3, 2)}px) scale(${sc})`;
+  // handwritten "one"
+  const hw = E.sine(P(t, 0, .2)) * 120;
+  const one = $('s1one');
+  one.style.left = oneX + 'px';
+  one.style.webkitMaskImage = `linear-gradient(90deg,#000 ${hw - 12}%,transparent ${hw}%)`;
+  // selection
+  const hp = E.back(P(t, .17, .27));
+  $('s1hl').style.left = hlL + 'px'; $('s1hl').style.width = (hlR - hlL) * clamp(hp * 1.2) + 'px';
+  const hL = $('s1hL'), hR = $('s1hR');
+  hL.style.left = (hlL - 3) + 'px'; hR.style.left = (hlR - 3) + 'px';
+  const hs = fixed ? lerp(1, .62, E.xo(P(t, 1.05, 1.15))) : 1;
+  hL.style.transform = `scale(${hp * hs})`; hR.style.transform = `scale(${hp * hs})`;
+  hL.style.transformOrigin = '50% 0'; hR.style.transformOrigin = '50% 100%';
+  // word
+  const wEl = $('s1word'); wEl.style.left = (hlL + 14) + 'px';
+  wEl.innerHTML = [...S1.word].map((c, i) => { const a = P(t, S1.wTimes[i], S1.wTimes[i] + .08); return a > 0 ? `<span style="opacity:${.25 + .75 * a}">${c}</span>` : ''; }).join('');
+  // typed
+  const tEl = $('s1typed'); tEl.style.left = typX + 'px';
+  if (!fixed) tEl.innerHTML = [...S1.typo].map((c, i) => { const a = P(t, S1.tTimes[i], S1.tTimes[i] + .07); return a > 0 ? `<span style="opacity:${.2 + .8 * a}">${c === ' ' ? '&nbsp;' : c}</span>` : ''; }).join('');
+  else tEl.innerHTML = t < 1.12 ? 'every mornin' : S1.fix;
+  // dots under typo
+  const dots = $('s1dots').children; const nd = Math.floor(typedW / 17);
+  for (let i = 0; i < dots.length; i++) { dots[i].style.opacity = (!fixed || t < 1.09) && i < nd ? (fixed ? 1 - P(t, 1.04, 1.09) : 1) : 0; }
+  $('s1dots').style.left = typX + 'px';
+  // caret
+  const cr = $('s1caret'); cr.style.left = (typX + typedW + 6) + 'px';
+  cr.style.opacity = t > .48 && t < 1.12 ? 1 : 0;
+  // colors: light -> dark flip
+  const k = E.sine(P(t, 1.0, 1.12));
+  const bg = t < 1.0 ? [236, 236, 232] : t < 1.05 ? [181, 186, 176] : t < 1.1 ? [58, 62, 58] : [14, 14, 14];
+  const bgk = t < 1.0 ? 0 : 1;
+  $('s1').style.background = bgk ? `rgb(${bg})` : 'var(--paper)';
+  const tc = `rgb(${lerp(22, 245, k)},${lerp(22, 245, k)},${lerp(22, 245, k)})`;
+  one.style.color = tc; wEl.style.color = tc; tEl.style.color = tc; cr.style.background = tc;
+  $('s1hl').style.background = k > .5 ? 'rgba(92,84,42,.55)' : 'var(--hl)';
+  const blur = K(t, [[0, 0], [1.0, 0], [1.05, 6, 'out'], [1.1, 3], [1.16, 0], [1.48, 0], [1.6, 16, 'in']]);
+  $('s1cam').style.filter = blur > .05 ? `blur(${blur}px)` : 'none';
+  // slash then badge
+  const sl = $('s1slash'); const bx = typX + typedW + 50;
+  sl.style.left = bx + 10 + 'px';
+  const sp = P(t, 1.12, 1.2); const sp2 = P(t, 1.2, 1.26);
+  sl.style.opacity = sp > 0 && sp2 < 1 ? 1 - sp2 : 0;
+  $('s1slashp').setAttribute('stroke-dasharray', `${100 * E.out(sp)} 200`);
+  const b = $('s1badge'); b.style.left = bx + 'px';
+  const bs = spring(t - 1.2, 20, .45);
+  b.style.opacity = t > 1.2 ? 1 : 0;
+  b.style.transform = `rotate(${lerp(-40, 0, bs)}deg) scale(${Math.max(0, bs)}) rotateY(${lerp(60, 0, clamp(bs))}deg)`;
+  // bloom into white dot
+  const bl = E.io(P(t, 1.46, 1.6)); const bd = $('s1bloom');
+  const r = bl * 230; bd.style.width = bd.style.height = 2 * r + 'px'; bd.style.left = 720 - r + 'px'; bd.style.top = 540 - r + 'px';
+  bd.style.boxShadow = `0 0 ${80 * bl}px ${40 * bl}px rgba(255,255,255,${.9 * bl})`; bd.style.filter = `blur(${10 * bl}px)`;
+  line.style.opacity = 1 - E.in(P(t, 1.52, 1.6));
+}
+
+/* =====================================================================
+   S2 distance countdown -> coin flip -> "right here"
+   ===================================================================== */
+function initS2() {
+  const c = $('s2coin'); let h = '';
+  for (let i = 0; i < 9; i++) h += `<div class="abs" style="inset:0;border-radius:50%;background:${i % 2 ? '#C9CDD3' : '#B9BEC6'};transform:translateZ(${-i * 2.2}px)"></div>`;
+  h += `<div class="abs" id="s2front" style="inset:0;border-radius:50%;background:radial-gradient(circle at 42% 38%,#FFFFFF,#ECEFF3 70%,#DADFE6);backface-visibility:hidden;transform:translateZ(1px)"></div>`;
+  h += `<div class="abs" id="s2back" style="inset:0;border-radius:50%;background:radial-gradient(circle at 40% 35%,#FDFDFD,#D8DCE2);transform:rotateY(180deg) translateZ(21px);backface-visibility:hidden;border:16px solid #F4F5F7;box-shadow:inset 0 0 0 3px #C5CAD2,inset 0 0 30px rgba(0,0,0,.15)">
+     <div class="abs" style="inset:20px;border-radius:50%;background:radial-gradient(circle at 45% 40%,#DDE7F6,#AFC3E0);box-shadow:inset 0 4px 12px rgba(0,0,0,.18)"></div>
+     <svg viewBox="0 0 120 100" width="170" height="142" style="position:absolute;left:71px;top:84px">${FISH} fill="#1D7CF2" stroke="#1D7CF2" stroke-width="8" stroke-linejoin="round"/><circle cx="75" cy="44" r="13" fill="#fff"/><circle cx="79" cy="45" r="7" fill="#1B2B4B"/></svg>
+     <svg viewBox="0 0 300 300" width="280" height="280" style="position:absolute;left:16px;top:16px"><defs><path id="cp" d="M150 150 m-122 0 a122 122 0 1 1 244 0 a122 122 0 1 1 -244 0"/></defs><text font-family="In" font-size="15" font-weight="600" fill="#8C95A3" letter-spacing="3"><textPath href="#cp">BOPLI · ONE PHOTO A DAY · BOPLI · ONE PHOTO A DAY ·</textPath></text></svg></div>`;
+  c.innerHTML = h;
+}
+function renderS2(t) {
+  const r0 = 172;
+  const ringR = K(t, [[1.6, r0 * 1.78], [1.85, r0 * 1.66, 'xo'], [2.4, r0 * 1.55, 'sine'], [2.58, r0 * 1.36], [2.66, r0 * 1.1], [2.72, r0 * .98, 'in']]);
+  const ring = $('s2ring'); ring.style.width = ring.style.height = 2 * ringR + 'px';
+  ring.style.left = 720 - ringR + 'px'; ring.style.top = 540 - ringR + 'px';
+  ring.style.opacity = t < 2.72 ? 1 : 0;
+  const ent = E.xo(P(t, 1.6, 1.82));
+  $('s2all').style.filter = ent < 1 ? `blur(${(1 - ent) * 18}px)` : 'none';
+  const glow = K(t, [[2.66, 0], [2.74, 1, 'out'], [2.86, 1], [3.0, 0]]);
+  const ang = t < 2.8 ? 0 : 180 * E.xo(P(t, 2.8, 3.5));
+  const sc = lerp(1.22, 1, ent) * K(t, [[2.8, 1], [3.05, .9], [3.5, .94]]);
+  const coin = $('s2coin');
+  coin.style.transform = `rotateY(${ang}deg) rotateZ(${t > 2.8 ? Math.sin(ang / 180 * Math.PI) * -6 : 0}deg) scale(${sc})`;
+  $('s2front').style.boxShadow = `0 0 ${70 * glow}px ${26 * glow}px rgba(255,255,255,${.85 * glow})`;
+  $('s2coinwrap').style.filter = ang > 0 ? `drop-shadow(0 ${20 * P(ang, 90, 180)}px 30px rgba(0,0,0,.25))` : 'none';
+  // distance numbers
+  const nums = [[1.62, '820 km'], [1.86, '610 km'], [2.1, '390 km'], [2.36, '170 km'], [2.58, '40 km'], [2.78, '0 km']];
+  let n = ''; let nt = 0; for (const [a, s] of nums) if (t >= a) { n = s; nt = a; }
+  const sw = P(t, nt, nt + .06);
+  const num = $('s2num'); num.textContent = n; num.style.filter = sw < 1 ? `blur(${(1 - sw) * 4}px)` : 'none';
+  const words = [['away', 1.7], ['from', 1.82], ['mom', 1.94]];
+  $('s2lab').innerHTML = words.map(([w, a]) => { const p = E.xo(P(t, a, a + .14)); return p > 0 ? `<span style="display:inline-block;margin-right:16px;opacity:${p};transform:translateY(${(1 - p) * 26}px);filter:blur(${(1 - p) * 6}px)">${w}</span>` : ''; }).join('');
+  const out = P(t, 2.96, 3.0);
+  num.style.opacity = $('s2lab').style.opacity = 1 - out;
+  const hp = E.xo(P(t, 3.0, 3.12)); const hg = 1 - E.out(P(t, 3.02, 3.35));
+  const here = $('s2here'); here.style.opacity = hp;
+  here.style.filter = `blur(${(1 - hp) * 8}px)`;
+  here.style.textShadow = `0 0 ${18 * hg + 2}px rgba(255,255,255,${.9 * hg}),0 0 ${40 * hg}px rgba(255,255,255,${.7 * hg})`;
+}
+
+/* =====================================================================
+   S3 photo cuts in a viewer
+   ===================================================================== */
+const S3T = [[3.6, 3.75], [3.75, 3.9], [3.9, 4.05], [4.05, 4.2]];
+function initS3() {
+  const fns = [shotSunrise, shotHome, shotCoffee, shotLock];
+  $('s3shots').innerHTML = fns.map((f, i) => `<div class="abs s3shot" style="inset:0;display:none;transform-origin:760px 560px">${f()}</div>`).join('');
+  const ic = (d, y, bg = 'rgba(30,30,30,.55)') => `<div class="abs" style="left:4px;top:${y}px;width:52px;height:52px;border-radius:50%;background:${bg};backdrop-filter:blur(6px)"><svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">${d}</svg></div>`;
+  $('s3chrome').innerHTML = ic('<circle cx="26" cy="26" r="11"/><path d="M26 19v7l4 3"/>', 24) + ic('<path d="M29 17l-9 9 9 9"/>', 96) + ic('<path d="M26 14v16M20 20l6-6 6 6M18 28v9h16v-9"/>', 160) + ic('<circle cx="18" cy="26" r="1.5"/><circle cx="26" cy="26" r="1.5"/><circle cx="34" cy="26" r="1.5"/>', 224) + ic('<path d="M26 36s-10-6-10-13a5 5 0 0 1 10-2 5 5 0 0 1 10 2c0 7-10 13-10 13z"/>', 880) + ic('<circle cx="26" cy="26" r="11"/><path d="M26 24v8M26 19.5v.5"/>', 948);
+}
+function renderS3(t) {
+  const shots = document.querySelectorAll('.s3shot');
+  S3T.forEach(([a, b], i) => {
+    const on = t >= a && t < b; shots[i].style.display = on ? 'block' : 'none';
+    if (on) { const p = P(t, a, b); shots[i].style.transform = `scale(${1.04 + .05 * p}) translate(${-8 * p}px,${4 * p}px)`; }
+  });
+  const ring = document.getElementById('sunring');
+  if (ring) { const p = E.out(P(t, 3.68, 3.72)); ring.setAttribute('opacity', p); ring.setAttribute('stroke-dasharray', `${1118 * p} 2000`); }
+}
+
+/* =====================================================================
+   S4 line circle with fish glyph, text rings, frame -> shutter
+   ===================================================================== */
+const S4 = {};
+function ringHTML(id, txt, font, size, R, reps) {
+  const full = (txt).repeat(reps);
+  const F = `${font} ${size}px In`;
+  let a = 0, h = ''; const circ = 2 * Math.PI * R;
+  [...full].forEach((c, i) => {
+    const w = mw(c, F) * .98;
+    const ang = (a + w / 2) / circ * 360;
+    h += `<span class="${id}c" style="position:absolute;left:0;top:0;font:${font} ${size}px/1 In;letter-spacing:-.02em;transform:rotate(${ang}deg) translate(-50%,${-R - size * .36}px);transform-origin:0 0;white-space:pre">${c === ' ' ? ' ' : c}</span>`;
+    a += w;
+  });
+  return { html: `<div class="abs" id="${id}" style="left:0;top:0">${h}</div>`, n: full.length, span: a / circ * 360 };
+}
+function initS4() {
+  const svg = $('s4svg');
+  svg.innerHTML = `<g id="s4g" transform="translate(720 510)">
+     <circle id="s4circ" r="380" fill="none" stroke="#111" stroke-width="3.2" pathLength="1000" transform="rotate(-90)"/>
+     <g id="s4fishg"><path id="s4fish" d="M48 -6C37 -25 22 -36 4 -36C-12 -36 -23 -27 -31 -15L-48 -29C-52 -32 -57 -29 -55 -24L-44 0L-55 24C-57 29 -52 32 -48 29L-31 15C-23 27 -12 36 4 36C22 36 37 25 48 6Q52 0 48 -6Z" fill="none" stroke="#111" stroke-width="3.2" stroke-linejoin="round" pathLength="1000" transform="scale(1.6)"/>
+     <circle id="s4eye" cx="22" cy="-10" r="12" fill="none" stroke="#111" stroke-width="3.2" pathLength="1000"/></g></g>`;
+  const o = ringHTML('rO', 'together. ', 800, 150, 640, 5);
+  const m = ringHTML('rM', 'all day, together. ', 500, 74, 430, 2);
+  const i = ringHTML('rI', 'all day', 200, 54, 318, 1);
+  $('s4rings').innerHTML = o.html + m.html + i.html;
+  S4.o = o; S4.m = m; S4.i = i;
+}
+function renderS4(t) {
+  // circle draw-on + rotation, shrink
+  const cR = K(t, [[4.2, 330], [4.45, 380, 'out'], [4.72, 300, 'io'], [4.85, 262, 'out'], [5.4, 255]]);
+  const circ = $('s4circ'); circ.setAttribute('r', cR);
+  const dp = E.out(P(t, 4.2, 4.5));
+  const gap = t < 4.5 ? 1000 * dp : K(t, [[4.5, 1000], [4.62, 940], [4.72, 990], [4.8, 1000]]);
+  circ.setAttribute('stroke-dasharray', `${Math.max(gap, 1)} 1000`);
+  circ.setAttribute('transform', `rotate(${-90 + 260 * E.out(P(t, 4.2, 4.9))})`);
+  // fish glyph: draws on, rotates, then un-draws
+  const fd = E.out(P(t, 4.22, 4.48)); const fu = E.in(P(t, 4.82, 5.22));
+  const fish = $('s4fish'), eye = $('s4eye');
+  fish.setAttribute('stroke-dasharray', `${1000 * fd * (1 - fu)} 1000`);
+  fish.setAttribute('stroke-dashoffset', `${-1000 * fu}`);
+  eye.setAttribute('stroke-dasharray', `${1000 * E.out(P(t, 4.36, 4.5)) * (1 - E.in(P(t, 4.82, 4.95)))} 1000`);
+  const fr = K(t, [[4.45, 0], [4.75, 38, 'io'], [5.2, 70, 'out']]);
+  const fs = K(t, [[4.45, 1], [4.75, .82], [5.2, .7]]);
+  $('s4fishg').setAttribute('transform', `rotate(${fr}) scale(${fs})`);
+  // rings
+  const reveal = (id, n, a, b, rot) => {
+    const el = $(id); el.style.transform = `rotate(${rot}deg)`;
+    const cs = el.children;
+    for (let i = 0; i < cs.length; i++) {
+      const ti = a + (b - a) * (i / cs.length);
+      const p = P(t, ti, ti + .1);
+      cs[i].style.opacity = p;
+      cs[i].style.color = p < 1 ? `rgb(${lerp(170, 17, p)},${lerp(170, 17, p)},${lerp(170, 17, p)})` : '#111';
+    }
+  };
+  reveal('rO', S4.o.n, 4.7, 5.2, 30 - 28 * (t - 4.7));
+  reveal('rM', S4.m.n, 4.72, 5.05, -50 + 34 * (t - 4.7));
+  reveal('rI', S4.i.n, 4.78, 5.0, -78 + 22 * (t - 4.7));
+  $('rI').style.opacity = .9;
+  // frame shrink into shutter button
+  const fr0 = E.io(P(t, 5.24, 5.5));
+  let w = lerp(1440, 1260, fr0), h = lerp(1080, 960, fr0), rad = lerp(0, 28, fr0);
+  const f2 = E.io(P(t, 5.48, 5.72));
+  w = lerp(w, 190, f2); h = lerp(h, 190, f2); rad = lerp(rad, 95, E.in(P(t, 5.5, 5.68)) * 1);
+  const cy = lerp(540, 532, f2);
+  const fr1 = $('s4frame');
+  fr1.style.width = w + 'px'; fr1.style.height = h + 'px'; fr1.style.left = 720 - w / 2 + 'px'; fr1.style.top = cy - h / 2 + 'px';
+  fr1.style.borderRadius = rad + 'px';
+  fr1.style.transform = `rotate(${-4 * Math.sin(Math.PI * f2)}deg)`;
+  fr1.style.boxShadow = fr0 > 0 ? `0 0 0 ${4 * (1 - f2)}px #fff` : 'none';
+  const k = Math.min(w / 1440, h / 1080) * 1.06;
+  $('s4inner').style.transform = `translate(${w / 2 - 720 * k}px,${h / 2 - 540 * k}px) scale(${k})`;
+  $('s4white').style.opacity = E.in(P(t, 5.58, 5.72));
+}
+
+/* =====================================================================
+   S5 camera
+   ===================================================================== */
+function initS5() { $('s5scene').innerHTML = deskScene() + phoneNote(); }
+function renderS5(t) {
+  // shutter button
+  const bp = E.io(P(t, 5.72, 6.02));
+  const by = lerp(532, 948, bp), br = lerp(95, 86, bp);
+  const btn = $('s5btn');
+  const press = K(t, [[7.24, 1], [7.3, .86, 'out'], [7.42, 1, 'out']]);
+  btn.style.width = btn.style.height = 2 * br + 'px'; btn.style.left = 720 - br + 'px'; btn.style.top = by - br + 'px';
+  btn.style.transform = `scale(${press})`;
+  btn.style.boxShadow = `0 0 0 ${8 * bp}px #0B0B0B, 0 0 0 ${15 * bp}px ${t > 7.26 && t < 7.4 ? '#9a9a9a' : '#d8d8d8'}`;
+  btn.style.display = t < 5.7 ? 'none' : 'block';
+  // flash/flip icons
+  const ip = E.out(P(t, 5.6, 5.8));
+  const fl = $('s5flash'), fp = $('s5flip');
+  fl.style.left = lerp(720 - 32, 720 - 230, ip) + 'px'; fp.style.left = lerp(720 - 32, 720 + 166, ip) + 'px';
+  fl.style.top = fp.style.top = (by - 32) + 'px'; fl.style.opacity = fp.style.opacity = ip;
+  // viewfinder: circle from top -> squircle
+  const vp = E.io(P(t, 5.76, 6.12));
+  const vw = lerp(420, 660, vp), vh = lerp(420, 660, vp), vy = lerp(-250, 126, E.out(P(t, 5.76, 6.08)));
+  const vr = lerp(210, 132, E.io(P(t, 5.9, 6.12)));
+  const vf = $('s5vf'); vf.style.width = vw + 'px'; vf.style.height = vh + 'px'; vf.style.left = 720 - vw / 2 + 'px'; vf.style.top = vy + 'px'; vf.style.borderRadius = vr + 'px'; vf.style.display = t < 5.72 ? 'none' : 'block';
+  // content: handheld + phone enters + refocus + shutter
+  const sc = $('s5scene');
+  const ph = $('s5phone'), th = $('s5thumb');
+  const enter = E.out(P(t, 6.06, 6.32));
+  const shake = t > 6.2 ? 1 : 0;
+  const refocus = K(t, [[6.82, 0], [6.86, 1, 'out'], [6.96, 0]]);
+  sc.style.transform = `translate(${(vw - 700) / 2 + wob(t, 5) * shake}px,${(vh - 700) / 2 + wob(t + 2, 4) * shake}px) scale(${1 + .04 * P(t, 6, 7.9)})`;
+  ph.style.transform = `translate(${lerp(-300, 0, enter) + K(t, [[6.8, 0], [6.9, 22], [7.3, 10], [7.5, -6]])}px,${lerp(360, 0, enter)}px) rotate(${lerp(-24, 0, enter) + K(t, [[6.8, 0], [6.9, 3], [7.4, 1]])}deg) scale(${1.05 + .03 * Math.sin(t)})`;
+  ph.style.filter = refocus > .02 ? `blur(${refocus * 9}px)` : (enter < 1 ? `blur(${(1 - enter) * 10}px)` : 'none');
+  th.style.transform = `translate(${lerp(-380, 0, enter)}px,${lerp(420, 0, enter)}px) rotate(28deg)`;
+  $('s5w1').style.webkitMaskImage = `linear-gradient(90deg,#000 ${E.out(P(t, 6.3, 6.6)) * 110}%,transparent ${E.out(P(t, 6.3, 6.6)) * 110 + 8}%)`;
+  $('s5w2').style.webkitMaskImage = `linear-gradient(90deg,#000 ${E.out(P(t, 6.88, 7.2)) * 110}%,transparent ${E.out(P(t, 6.88, 7.2)) * 110 + 8}%)`;
+  $('s5w3').style.opacity = E.out(P(t, 7.2, 7.3));
+  // shutter flash + end blur
+  const fla = K(t, [[7.27, 0], [7.29, .9, 'out'], [7.42, 0]]);
+  vf.style.boxShadow = `inset 0 0 0 999px rgba(255,255,255,${fla})`;
+  // title typed
+  const title = 'New Bopli'; const n = Math.floor(clamp((t - 6.14) / .035, 0, title.length));
+  $('s5title').textContent = title.slice(0, n);
+  const ui = E.out(P(t, 6.26, 6.36));
+  $('s5x').style.opacity = $('s5grid').style.opacity = ui;
+  const endb = E.in(P(t, 7.78, 7.9));
+  $('s5').style.filter = endb > 0 ? `blur(${endb * 14}px) brightness(${1 + endb * .4})` : 'none';
+  $('s5').style.transform = `scale(${1 - .1 * endb})`;
+}
+
+/* =====================================================================
+   S6 canvas board: card -> info window -> cluster with gizmos -> dark
+   ===================================================================== */
+const S6 = {};
+function gizmo(sz) {
+  return `<svg class="abs" width="${sz * 2}" height="${sz * 2}" viewBox="-100 -100 200 200" style="left:50%;top:50%;margin:-${sz}px 0 0 -${sz}px;overflow:visible"><g fill="none" stroke-width="2.6">
+  <path d="M0 0 L80 -10" stroke="#E0493A"/><rect x="76" y="-15" width="10" height="10" fill="#E0493A" stroke="none"/>
+  <path d="M0 0 L-8 -86" stroke="#3FB34F"/><rect x="-13" y="-92" width="10" height="10" fill="#3FB34F" stroke="none"/>
+  <path d="M0 0 L-52 50" stroke="#2F6BE0"/><rect x="-58" y="44" width="10" height="10" fill="#2F6BE0" stroke="none"/>
+  <path d="M60 -8 A60 60 0 0 0 -6 -60" stroke="#3FB34F" opacity=".8"/><path d="M-6 -60 A60 60 0 0 0 -40 38" stroke="#E0493A" opacity=".8"/><path d="M-40 38 A60 60 0 0 0 60 -8" stroke="#2F6BE0" opacity=".8"/></g></svg>`;
+}
+function initS6() {
+  const card = `<div class="abs" id="s6card" style="left:-450px;top:-320px;width:900px;height:640px;border-radius:30px;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.25);overflow:hidden">
+    <div style="height:56px;display:flex;align-items:center;gap:10px;padding:0 22px;border-bottom:1px solid #eee"><i style="width:14px;height:14px;border-radius:50%;background:#FF5F57"></i><i style="width:14px;height:14px;border-radius:50%;background:#FEBC2E"></i><i style="width:14px;height:14px;border-radius:50%;background:#28C840"></i><span style="font:600 16px In;color:#777;margin-left:12px">made by you · 7:02 AM</span></div>
+    <div class="abs" style="left:24px;top:76px;width:852px;height:540px;border-radius:8px;overflow:hidden">${avatar(4, 'c')}</div></div>`;
+  const info = `<div class="abs" id="s6info" style="left:-380px;top:-300px;width:760px;height:600px;border-radius:30px;background:#FAFAFA;box-shadow:0 30px 80px rgba(0,0,0,.25);padding:20px 30px;font-family:In;color:#222">
+    <div style="display:flex;align-items:center;gap:10px"><i style="width:15px;height:15px;border-radius:50%;background:#FF5F57"></i><i style="width:15px;height:15px;border-radius:50%;background:#FEBC2E"></i><i style="width:15px;height:15px;border-radius:50%;background:#28C840"></i><span style="font:600 19px In;margin-left:12px">🖼️ morning.jpg Info</span></div>
+    <div style="display:flex;align-items:center;margin-top:26px;gap:16px"><div style="width:72px;height:72px;border-radius:12px;overflow:hidden">${avatar(4, 'i')}</div><div><div style="font:700 26px In">morning.jpg</div><div style="font:italic 400 19px In;color:#777">Modified: Today, 7:02 AM</div></div><div style="margin-left:auto;font:italic 600 40px In">4 people</div></div>
+    <div style="margin-top:22px;height:64px;border:2px solid #ddd;border-radius:10px;color:#aaa;font:500 18px In;padding:10px 14px">Add Tags…</div>
+    <div style="margin-top:22px;font:600 20px/1.9 In;color:#444">General:<br><span style="font-weight:400">Kind: Morning photo<br>Shows on: their home screen widget<br>Seen by: Mom, Dad, Ema, Grandma<br>Private: Yes</span></div></div>`;
+  const items = [
+    ['folder', -330, -230, 120, `<div style="width:120px;height:96px;border-radius:12px;background:linear-gradient(#7CC4FF,#3D97F0);box-shadow:inset 0 14px 0 rgba(255,255,255,.35)"></div>`],
+    ['w1', 330, -260, 160, `<div style="width:160px;height:160px;border-radius:38px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.2)">${avatar(0, 'g0')}</div>`],
+    ['w2', -520, 40, 150, `<div style="width:150px;height:150px;border-radius:36px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.2)">${avatar(1, 'g1')}</div>`],
+    ['w3', 470, 160, 150, `<div style="width:150px;height:150px;border-radius:36px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.2)">${avatar(3, 'g3')}</div>`],
+    ['sun', -120, 300, 130, `<svg width="130" height="130" viewBox="-65 -65 130 130"><g stroke="#F2B300" stroke-width="5" stroke-linecap="round">${Array.from({ length: 10 }, (_, i) => `<path d="M0 -40 L0 -58" transform="rotate(${i * 36})"/>`).join('')}</g><circle r="30" fill="#F7C51E"/></svg>`],
+    ['phone', 160, -360, 110, `<div style="width:90px;height:170px;border-radius:22px;background:#8E8E93;border:6px solid #6B6B70"></div>`],
+    ['speaker', 560, -90, 90, `<div style="width:90px;height:90px;border-radius:50%;background:#B7B7BC;display:flex;align-items:center;justify-content:center;font-size:44px">🔈</div>`],
+    ['dial', 330, 330, 110, `<div style="width:110px;height:110px;border-radius:50%;background:#C9C9CE;box-shadow:inset 0 0 0 16px #A9A9AE"></div>`],
+    ['w4', -330, -460, 130, `<div style="width:130px;height:130px;border-radius:30px;overflow:hidden">${avatar(2, 'g2')}</div>`],
+    ['eye', -560, 330, 130, `<div style="width:130px;height:80px;border-radius:50%;background:#A6A6AB;box-shadow:inset 0 0 0 26px #8B8B90"></div>`],
+  ];
+  let h = `<div class="abs" id="s6cam" style="left:720px;top:540px;width:0;height:0;transform-style:preserve-3d">`;
+  h += `<div class="abs" id="s6blob" style="left:-360px;top:-420px;width:720px;height:900px;border-radius:360px 360px 80px 80px;background:rgba(120,120,118,.55);opacity:0"></div>`;
+  items.forEach(([id, x, y, sz, inner]) => h += `<div class="abs s6it" data-x="${x}" data-y="${y}" style="left:${x * 1.35}px;top:${y * 1.25}px;transform-style:preserve-3d"><div style="position:absolute;transform:translate(-50%,-50%)">${inner}</div>${gizmo(sz * .9)}</div>`);
+  h += `<div class="abs" id="s6cardw" style="transform-style:preserve-3d">${card}<div class="abs" id="s6g1" style="left:0;top:0">${gizmo(120)}</div></div>`;
+  h += `<div class="abs" id="s6infow" style="transform-style:preserve-3d">${info}<div class="abs" id="s6g2" style="left:0;top:0">${gizmo(110)}</div></div>`;
+  h += `</div><svg class="abs" id="s6cursor" width="44" height="56" viewBox="0 0 44 56"><path d="M4 3 L4 44 L14 34 L21 51 L29 48 L22 31 L37 31 Z" fill="#111" stroke="#fff" stroke-width="3" stroke-linejoin="round"/></svg>`;
+  $('s6world').innerHTML = h;
+  const r = rng(42); let d = '';
+  for (let i = 0; i < 90; i++) d += `<i class="s6d" style="position:absolute;left:${(r() * 1600 - 80) | 0}px;top:${(r() * 1200 - 60) | 0}px;width:10px;height:10px;background:${r() < .7 ? '#6E62D8' : '#8E2A3A'};opacity:0" data-t="${(8.95 + r() * 1.1).toFixed(3)}"></i>`;
+  $('s6world').insertAdjacentHTML('beforeend', `<div class="abs" style="inset:0" id="s6dotsr">${d}</div>`);
+  $('s6side').innerHTML = `<div style="width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;font:600 22px In">‹</div>
+    <div style="width:44px;height:44px;margin-top:12px;border-radius:50%;background:#3AA0D8;display:flex;align-items:center;justify-content:center;color:#fff;font:700 22px In">✓</div>
+    <div style="width:44px;margin-top:12px;padding:10px 0;border-radius:22px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12);text-align:center;font:600 20px/2 In;color:#333">↶<br>⇪<br>⋯</div>`;
+  const tool = (c, h2) => `<div style="width:22px;height:${h2}px;border-radius:6px 6px 3px 3px;background:linear-gradient(${c} 30%,#F2F2F2 30%);align-self:flex-end"></div>`;
+  $('s6tools').innerHTML = `<div style="display:flex;align-items:center;height:84px;padding:0 26px;gap:20px"><span style="font:600 24px In;color:#555">↶ ↷</span>${tool('#888', 52)}${tool('#111', 60)}${tool('#555', 50)}${tool('#F4D43A', 54)}${tool('#F29CB0', 46)}
+    <div style="display:grid;grid-template-columns:repeat(3,26px);gap:6px;margin-left:10px">${['#111', '#1D7CF2', '#2BB673', '#F2B300', '#E0493A', 'conic-gradient(red,yellow,lime,cyan,blue,magenta,red)'].map(c => `<i style="width:26px;height:26px;border-radius:50%;background:${c}"></i>`).join('')}</div><span style="font:700 24px In;color:#777;margin-left:8px">⋯</span></div>`;
+}
+function renderS6(t) {
+  const cam = $('s6cam');
+  // camera keys over the board (scale, rotX, rotZ, x, y)
+  const keys = (i) => K(t, [
+    [7.9, [1.9, 46, -30, -260, 330][i]], [8.0, [1.05, 44, -24, 0, 140][i], 'xo'], [8.26, [.96, 42, -20, 40, 120][i], 'sine'],
+    [8.31, [.42, 40, -18, 0, 60][i], 'xo'], [8.36, [2.6, 10, 18, 820, 300][i], 'xio'], [8.42, [.84, 0, 0, 60, 60][i], 'xo'],
+    [8.86, [.87, 0, 0, 50, 50][i], 'sine'], [8.9, [3.0, 8, -12, -426, 360][i], 'xo'], [8.95, [.66, 22, -10, 0, 20][i], 'xo'],
+    [10.5, [.76, 26, -14, 0, 0][i], 'sine']]);
+  const [s, rx, rz, x, y] = [0, 1, 2, 3, 4].map(keys);
+  cam.style.transform = `translate(${x}px,${y}px) scale(${s}) rotateX(${rx}deg) rotateZ(${rz}deg)`;
+  const blurK = K(t, [[8.31, 0], [8.36, 8, 'in'], [8.42, 0], [8.87, 0], [8.9, 5], [8.95, 0]]);
+  $('s6world').style.filter = blurK > .1 ? `blur(${blurK}px)` : 'none';
+  // card / info windows
+  const cw = $('s6cardw'), iw = $('s6infow');
+  const cardTilt = t < 8.36 ? 0 : 1;
+  cw.style.transform = cardTilt ? `translateZ(-160px) translate(${K(t, [[8.36, -470], [8.95, -260], [10.5, -230]])}px,${K(t, [[8.36, -40], [8.95, 0]])}px) rotateY(${K(t, [[8.36, 30], [8.6, 24], [8.95, 0]])}deg) rotateZ(${K(t, [[8.95, 0], [10.5, -14]])}deg)` : `translate(${wob(t, 14)}px,${wob(t + 1, 10)}px)`;
+  const ip = E.xo(P(t, 8.43, 8.62));
+  iw.style.display = t > 8.43 ? 'block' : 'none';
+  iw.style.transform = `translateZ(90px) translate(${lerp(900, 330, ip) + K(t, [[8.62, 0], [8.95, 40]])}px,${lerp(500, 60, ip) + K(t, [[8.95, 0], [10.5, -30]])}px) rotateY(${lerp(-55, -26, ip) + K(t, [[8.95, 0], [10.5, 18]])}deg) rotateZ(${lerp(-14, -6, ip)}deg) scale(${K(t, [[8.95, 1], [9.0, .62, 'xo']])})`;
+  $('s6g1').style.opacity = $('s6g2').style.opacity = t > 8.95 ? 1 : 0;
+  // cursor dragging the card corner
+  const cur = $('s6cursor'); cur.style.display = t < 8.32 ? 'block' : 'none';
+  cur.style.left = K(t, [[7.9, 1130], [8.0, 1100, 'xo'], [8.26, 1150, 'sine']]) + 'px';
+  cur.style.top = K(t, [[7.9, 980], [8.0, 820, 'xo'], [8.26, 780, 'sine']]) + 'px';
+  // cluster items + gizmo spin
+  const its = document.querySelectorAll('.s6it');
+  its.forEach((el, i) => {
+    const a = 8.98 + i * .055; const p = spring(t - a, 16, .5);
+    el.style.display = t > a ? 'block' : 'none';
+    el.style.transform = `translateZ(${(i % 3) * 40}px) rotateZ(${wob(t + i, 8)}deg) scale(${1.45 * clamp(p, 0, 1.3)})`;
+    const g = el.querySelector('svg'); if (g) g.style.transform = `rotate(${(t - a) * (i % 2 ? 40 : -55)}deg)`;
+  });
+  ['s6g1', 's6g2'].forEach((id, i) => { const g = $(id).firstElementChild; g.style.transform = `rotate(${(t - 8.95) * (i ? -45 : 35)}deg)`; });
+  document.querySelectorAll('.s6d').forEach(d => { const a = +d.dataset.t; d.style.opacity = t > a ? .9 : 0; });
+  const blob = $('s6blob'); blob.style.opacity = E.out(P(t, 9.3, 9.6)) * .9;
+  blob.style.transform = `translateY(${lerp(200, 0, E.out(P(t, 9.3, 9.7)))}px) rotateZ(${wob(t, 3)}deg)`;
+  // darkening
+  const dk = K(t, [[9.32, 0], [9.6, .14, 'sine'], [10.2, .45, 'sine'], [10.44, .82, 'in'], [10.52, 1]]);
+  $('s6dark').style.opacity = dk;
+  $('s6dots').style.transform = `translate(${x * .2}px,${y * .2}px)`;
+}
+
+/* =====================================================================
+   S7 big wavy word
+   ===================================================================== */
+function initS7() {
+  const w = 'miles'; const F = '800 330px In'; let x = 0; const tot = mw(w, F) - 330 * .04 * w.length;
+  $('s7word').innerHTML = [...w].map((c, i) => { const cw = mw(c, F) - 330 * .04; const el = `<span class="s7c" data-x="${x - tot / 2 + cw / 2}" style="position:absolute;left:0;top:0;font:800 330px/1 In;color:#fff;transform-origin:50% 60%;white-space:pre">${c}</span>`; x += cw; return el; }).join('');
+}
+function renderS7(t) {
+  const p = P(t, 10.55, 11.1);
+  const s = K(t, [[10.55, .55], [10.6, .72, 'xo'], [10.68, 1.25, 'xo'], [10.98, 1.3, 'sine'], [11.03, 1.0, 'io'], [11.08, .3, 'in']]);
+  const ry = K(t, [[10.55, -10], [10.68, -48, 'xo'], [10.96, -40, 'sine'], [11.04, -18], [11.08, 0, 'in']]);
+  const rz = K(t, [[10.55, -16], [10.68, -14], [10.96, -22, 'sine'], [11.04, -10], [11.08, 0]]);
+  const tx = K(t, [[10.55, -60], [10.68, 80, 'xo'], [10.96, 140], [11.08, 0, 'in']]);
+  $('s7word').style.transform = `translate(${tx}px,0) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${s})`;
+  document.querySelectorAll('.s7c').forEach((el, i) => {
+    const ph = (t - 10.55) * 7 + i * .9;
+    const z = Math.sin(ph) * 26 * (1 - P(t, 11.0, 11.08));
+    el.style.transform = `translate(${+el.dataset.x}px,-50%) translate(-50%,0) translateZ(${z}px) rotateX(${Math.sin(ph) * 10}deg) rotateZ(${Math.cos(ph) * 4}deg)`;
+  });
+  const fin = E.out(P(t, 10.55, 10.6));
+  $('s7').style.opacity = fin;
+}
+
+/* =====================================================================
+   S8 "miles ( ❌ ) apart ←" -> "still (🫶) close ↗" -> bubble -> chat
+   ===================================================================== */
+const S8 = {};
+function initS8() {
+  S8.F = '700 104px In';
+  $('s8line').innerHTML = `<span class="abs" id="l1" style="top:0;font:700 104px/1 In;letter-spacing:-.035em"></span>
+    <span class="abs" id="lpo" style="top:0;font:500 104px/1 In">(</span><span class="abs emo" id="lem" style="top:14px;width:90px;height:90px;font-size:80px;line-height:90px;text-align:center"></span><span class="abs" id="lpc" style="top:0;font:500 104px/1 In">)</span>
+    <span class="abs" id="l2" style="top:0;font:700 104px/1 In;letter-spacing:-.035em"></span>
+    <svg class="abs" id="larr" width="110" height="110" viewBox="-55 -55 110 110" style="top:-2px"><path d="M40 0 H-36 M-8 -30 L-38 0 L-8 30" fill="none" stroke="#111" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="abs" id="lbub" style="border-radius:60px;background:#1D7CF2;opacity:0;z-index:-1"></div>`;
+  S8.wOf = s => mw(s, S8.F) - 104 * .035 * s.length;
+  // chat
+  $('s8chat').innerHTML = `<div class="abs" id="cToday" style="left:0;right:0;top:262px;text-align:center;font:600 19px In;color:#8E8E93"><b style="color:#6b6b70">Today</b> 7:02 AM</div>
+    <div class="abs" id="cGrey" style="left:226px;top:352px;height:60px;border-radius:30px;background:#DCDCDA;font:600 27px/60px In;color:#222;padding:0 26px;white-space:nowrap"></div>
+    <div class="abs" id="cDate" style="left:0;right:0;top:470px;text-align:center;font:500 18px In;color:#8E8E93">November 26, 2026 at 7:15 AM</div>
+    <div class="abs" id="cType" style="left:170px;top:520px;font:700 46px/1 In;color:#222;white-space:nowrap"></div>
+    <div class="abs" id="cMenu" style="left:150px;top:600px;height:60px;display:flex;align-items:center;font:600 24px In;color:#222;white-space:nowrap"></div>`;
+  $('cMenu').innerHTML = ['Cut', 'Copy', 'Paste', '<span style="color:#C8102E">Delete</span>', 'AutoFill', 'Look Up'].map(s => `<span style="padding:0 30px;border-right:2px solid #ccc">${s}</span>`).join('');
+}
+function renderS8(t) {
+  // line state
+  const w1 = t < 12.15 ? 'miles' : 'still';
+  const cyc = ['o', 'n', 'l', 'j', 'i', 'g', 'g', 'f', 'f', 't'];
+  const ci = Math.floor(clamp((t - 11.12) / .05, 0, cyc.length - 1));
+  const w2 = t < 12.55 ? 'apar' + cyc[ci] : 'close';
+  const em1 = t < 11.45 ? '❌' : t < 12.52 ? '✈️' : '🫶';
+  // emoji scale: shrink to dot then grow
+  let es = 1;
+  if (t < 11.45) es = 1 - .85 * E.in(P(t, 11.38, 11.45));
+  else if (t < 12.52) { es = t < 11.58 ? .12 : clamp(spring(t - 11.58, 22, .5) * 1, .12, 1.3); if (t > 12.42) es *= 1 - .88 * E.in(P(t, 12.42, 12.52)); }
+  else es = t < 12.62 ? .12 : clamp(spring(t - 12.62, 22, .5), .12, 1.3);
+  const arrIn = spring(t - 11.62, 20, .5);
+  const arrRot = t < 12.5 ? 0 : 135 * clamp(spring(t - 12.5, 22, .45), 0, 1.15);
+  const ww1 = S8.wOf(w1), ww2 = S8.wOf(w2);
+  const gap = 18, paren = mw('(', '500 104px In'), emW = 96;
+  const xs = []; let x = 0;
+  xs.push(x); x += ww1 + gap; xs.push(x); x += paren + 4; xs.push(x); x += emW + 4; xs.push(x); x += paren + gap; xs.push(x); x += ww2 + 22; xs.push(x); x += 110 * clamp(arrIn);
+  const total = x;
+  // smooth recentering
+  S8.tot = S8.tot || {};
+  const tw = K(t, [[11.1, total], [11.11, total]]);
+  const line = $('s8line');
+  const lp = ['l1', 'lpo', 'lem', 'lpc', 'l2', 'larr'];
+  lp.forEach((id, i) => $(id).style.left = xs[i] + 'px');
+  $('l1').textContent = w1; $('l2').textContent = w2; $('lem').textContent = em1;
+  $('lem').style.transform = `scale(${es})`;
+  $('larr').style.transform = `translateX(${(1 - clamp(arrIn)) * 60}px) rotate(${arrRot}deg) scale(${clamp(arrIn, 0, 1.2)})`;
+  $('larr').style.opacity = t > 11.62 ? 1 : 0;
+  // entry zoom (from huge), bubble morph, send
+  const ent = E.xo(P(t, 11.1, 11.2));
+  let ls = lerp(2.6, 1, ent);
+  const bub = E.io(P(t, 13.04, 13.2));
+  ls *= lerp(1, .34, bub);
+  const send = E.io(P(t, 13.38, 13.5));
+  const scroll = E.io(P(t, 13.96, 14.08));
+  const cx = lerp(720, lerp(720, 925, send), 1) - 0, cy = lerp(540, lerp(540, 340, send), 1) - 110 * scroll;
+  line.style.transformOrigin = '0 0';
+  line.style.transform = `translate(${cx - total / 2 * ls}px,${cy - 58 * ls}px) scale(${ls})`;
+  const b = $('lbub'); b.style.opacity = bub; b.style.left = '-50px'; b.style.top = '-24px'; b.style.width = total + 100 + 'px'; b.style.height = '154px';
+  b.style.borderRadius = '77px';
+  // chat elements
+  const today = $('cToday'), grey = $('cGrey'), dt = $('cDate'), ty = $('cType'), menu = $('cMenu');
+  const show = t > 13.48;
+  today.style.opacity = E.out(P(t, 13.5, 13.6)); today.style.transform = `translateY(${-110 * scroll}px)`;
+  grey.style.display = t > 13.54 ? 'block' : 'none';
+  const gw = ['saw', 'your', 'morning..'], gt = [13.6, 13.7, 13.8];
+  grey.innerHTML = gw.map((w, i) => { const p = P(t, gt[i], gt[i] + .1); return p > 0 ? `<span style="opacity:${p};color:${p < 1 ? '#999' : '#222'}">${w} </span>` : ''; }).join('') || '&nbsp;';
+  grey.style.transform = `translateY(${-110 * scroll}px) scale(${clamp(spring(t - 13.54, 20, .6), 0, 1.1)})`; grey.style.transformOrigin = '0 50%';
+  dt.style.opacity = E.out(P(t, 14.0, 14.1)); dt.style.transform = `translateY(${-110 * scroll + 20 * (1 - scroll)}px)`;
+  // typing
+  let txt = '';
+  const full = 'Bopli. Coming so on';
+  if (t < 15.4) { const n = Math.floor(clamp((t - 14.1) / .05, 0, full.length)); txt = full.slice(0, n); }
+  else { const re = ['', 's', 'so', 'soo', 'soon']; const k = Math.floor(clamp((t - 15.43) / .1, 0, 4)); txt = 'Bopli. Coming ' + re[k]; }
+  const caretOn = t > 14.04 && t < 16.0 && (Math.floor(t * 3) % 2 === 0 || (t > 14.1 && t < 15.95));
+  ty.innerHTML = txt.replace(/ /g, '&nbsp;') + (caretOn && !(t > 15.04 && t < 15.4) ? '<span style="display:inline-block;width:5px;height:46px;background:#1D7CF2;vertical-align:-6px;margin-left:2px;border-radius:2px"></span>' : '');
+  ty.style.transform = `translateY(${-110 * scroll + 20 * (1 - scroll)}px)`;
+  ty.style.opacity = t > 14.04 ? 1 : 0;
+  // selection on "so on"
+  let selH = '';
+  if (t > 15.04 && t < 15.4) {
+    const pre = mw('Bopli. Coming ', '700 46px In'), sw = mw('so on', '700 46px In');
+    const hp = E.back(P(t, 15.04, 15.12));
+    selH = `<div class="abs" style="left:${pre - 4}px;top:-6px;width:${sw + 8}px;height:58px;background:var(--hl);z-index:-1"></div>
+      <div class="abs" style="left:${pre - 6}px;top:-8px;width:4px;height:62px;background:var(--gold);transform:scale(${hp});transform-origin:50% 0"><i style="position:absolute;left:-7px;top:-14px;width:18px;height:18px;border-radius:50%;background:var(--gold)"></i></div>
+      <div class="abs" style="left:${pre + sw + 4}px;top:-8px;width:4px;height:62px;background:var(--gold);transform:scale(${hp});transform-origin:50% 100%"><i style="position:absolute;left:-7px;bottom:-14px;width:18px;height:18px;border-radius:50%;background:var(--gold)"></i></div>`;
+  }
+  ty.insertAdjacentHTML('beforeend', selH);
+  const mp = E.xo(P(t, 15.06, 15.2)), mo = 1 - E.out(P(t, 15.55, 15.68));
+  menu.style.opacity = t > 15.06 ? mp * mo : 0;
+  menu.style.transform = `translate(${lerp(300, 0, mp) - 40 * P(t, 15.2, 15.6) - 110 * scroll}px,${-110 * scroll + 20}px)`;
+  menu.style.top = '600px';
+  // camera zoom-in on the typed text
+  const z = E.xo(P(t, 14.74, 14.88));
+  const sc = lerp(1, 2.05, z);
+  $('s8cam').style.transform = `translate(${lerp(0, -170 * 2.05 + 40, z)}px,${lerp(0, -410 * 2.05 + 520, z)}px) scale(${sc})`;
+  $('s8chat').style.opacity = show ? 1 : 0;
+}
+
+/* =====================================================================
+   S10 glitch -> spinner -> wordmark
+   ===================================================================== */
+function renderS10(t) {
+  const g = $('s10glitch');
+  const gp = P(t, 16.05, 16.26);
+  if (t < 16.26) {
+    if (!g.dataset.built) {
+      renderS8(16.0);
+      const src = $('s8').cloneNode(true); src.removeAttribute('id'); src.style.display = 'block';
+      src.querySelectorAll('[id]').forEach(e => e.removeAttribute('id'));
+      let h = '';
+      for (let i = 0; i < 18; i++) h += `<div class="abs gsl" style="inset:0;overflow:hidden">${src.outerHTML}</div>`;
+      g.innerHTML = h + '<div class="abs" id="gnoise" style="inset:0"></div>';
+      g.dataset.built = 1;
+    }
+    const r = rng(1000 + Math.floor(t * 60));
+    const sl = g.querySelectorAll('.gsl');
+    sl.forEach((el, i) => {
+      const y0 = i / sl.length * 100, y1 = (i + 1) / sl.length * 100;
+      const black = r() < gp * 1.25;
+      el.style.clipPath = `inset(${y0}% 0 ${100 - y1}% 0)`;
+      el.style.transform = `translateX(${(r() - .5) * 140 * gp}px)`;
+      el.style.filter = black ? 'brightness(0)' : (r() < .35 ? `drop-shadow(${6 * gp}px 0 0 rgba(255,0,80,.8)) drop-shadow(${-6 * gp}px 0 0 rgba(0,200,255,.8))` : 'none');
+    });
+    let nz = '';
+    for (let i = 0; i < 40 * gp; i++) nz += `<i style="position:absolute;left:${(r() * 1440) | 0}px;top:${(r() * 1080) | 0}px;width:${(20 + r() * 200) | 0}px;height:${(3 + r() * 14) | 0}px;background:${r() < .5 ? '#fff' : ['#7CFF6B', '#FF4FD8', '#4FB4FF', '#ddd'][(r() * 4) | 0]};opacity:${.5 + r() * .5}"></i>`;
+    $('gnoise').innerHTML = nz;
+    g.style.display = 'block';
+  } else g.style.display = 'none';
+  // spinner
+  const sp = $('s10spin');
+  if (!sp.dataset.b) { sp.innerHTML = Array.from({ length: 8 }, (_, i) => `<path d="M0 -9 L0 -15" stroke="#fff" stroke-width="3.4" stroke-linecap="round" transform="rotate(${i * 45})"/>`).join(''); sp.dataset.b = 1; }
+  const step = Math.floor(t * 12) % 8;
+  [...sp.children].forEach((p, i) => p.setAttribute('opacity', (((i - step + 8) % 8) / 8) * .55 + .08));
+  sp.style.opacity = t > 16.26 ? (1 - P(t, 17.0, 17.2)) * .9 : 0;
+  const m = E.out(P(t, 17.2, 17.7)); const mk = $('s10mark');
+  mk.style.opacity = m * (1 - P(t, 18.55, 18.84));
+  mk.style.transform = `translateY(${(1 - m) * 14}px)`; mk.style.filter = m < 1 ? `blur(${(1 - m) * 8}px)` : 'none';
+}
+
+/* ---------- scenes table ---------- */
+const SCENES = [
+  ['s1', 0, 1.6, renderS1], ['s2', 1.6, 3.6, renderS2], ['s3', 3.6, 4.2, renderS3], ['s4', 4.2, 5.74, renderS4],
+  ['s5', 5.7, 7.9, renderS5], ['s6', 7.9, 10.56, renderS6], ['s7', 10.55, 11.1, renderS7], ['s8', 11.1, 16.05, renderS8], ['s10', 16.05, 99, renderS10],
+];
+function grain(t) {
+  const on = (t >= 3.6 && t < 4.2) || (t >= 5.8 && t < 7.9);
+  const c = $('grain'); c.style.opacity = on ? .22 : 0;
+  if (!on) return;
+  const x = c.getContext('2d'); const im = x.createImageData(480, 360); const r = rng(7 + Math.floor(t * 30));
+  for (let i = 0; i < im.data.length; i += 4) { const v = r() * 255; im.data[i] = im.data[i + 1] = im.data[i + 2] = v; im.data[i + 3] = 255; }
+  x.putImageData(im, 0, 0);
+}
+window.__seek = function (t) {
+  t = clamp(t, 0, DUR - 1e-4);
+  for (const [id, a, b, fn] of SCENES) {
+    const on = t >= a && t < b; const el = $(id);
+    el.style.display = on ? 'block' : 'none';
+    if (on) fn(t);
+  }
+  // z-order: S4 frame floats over S5 while it shrinks
+  $('s4').style.zIndex = 5; $('s5').style.zIndex = 4; $('s4').style.background = t > 5.2 ? 'transparent' : '#0B0B0B';
+  if (t >= 5.2 && t < 5.74) { $('s5').style.display = 'block'; renderS5(t); }
+  caption(t); grain(t);
+};
+window.__dur = DUR;
+window.__ready = (async () => {
+  await Promise.all(['200 20px In', '300 20px In', '400 20px In', '500 20px In', '600 20px In', '700 20px In', '800 20px In', 'italic 400 20px Ser', '700 20px Hand', '800 20px Nun', '20px "Noto Color Emoji"'].map(f => document.fonts.load(f, 'a😀')));
+  await document.fonts.ready;
+  initS1(); initS2(); initS3(); initS4(); initS5(); initS6(); initS7(); initS8();
+  window.__seek(0);
+  return true;
+})();
+// preview: ?t=1.2 or ?play
+const qs = new URLSearchParams(location.search);
+window.__ready.then(() => {
+  if (qs.has('t')) window.__seek(+qs.get('t'));
+  if (qs.has('play')) { const t0 = performance.now(); const loop = () => { window.__seek(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); }; loop(); }
+});
+</script>
+</body>
+</html>
