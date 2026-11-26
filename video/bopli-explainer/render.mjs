@@ -1,7 +1,7 @@
 // Render comp.html frame by frame with Playwright.
 //   node render.mjs stills <out.png> 0.5,1.2,3.0      contact sheet of chosen times
-//   node render.mjs video  <out.mp4> [fps=60] [workers=4]
-// Video mode renders at 2×fps and blends frame pairs (180° shutter motion blur), then encodes H.264.
+//   node render.mjs video  <out.mp4> [fps=60] [workers=4] [sub=4]
+// Video mode renders sub frames per output frame and averages them (360° shutter motion blur), then encodes H.264.
 import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -13,7 +13,7 @@ let pw; try { pw = require('playwright'); } catch { pw = require('/opt/node-tool
 const { chromium } = pw;
 const here = path.dirname(fileURLToPath(import.meta.url));
 const url = pathToFileURL(path.join(here, 'comp.html')).href;
-const [mode, out, a3, a4] = process.argv.slice(2);
+const [mode, out, a3, a4, a5] = process.argv.slice(2);
 
 async function page(browser) {
   const p = await browser.newPage({ viewport: { width: 1440, height: 1080 }, deviceScaleFactor: 1 });
@@ -51,7 +51,7 @@ if (mode === 'stills') {
   fs.rmSync(tmp, { recursive: true });
   console.log('wrote', out);
 } else if (mode === 'video') {
-  const fps = +(a3 || 60), workers = +(a4 || 4), sub = 2, rfps = fps * sub;
+  const fps = +(a3 || 60), workers = +(a4 || 4), sub = +(a5 || 4), rfps = fps * sub;
   const browser = await chromium.launch();
   const dur = await (await page(browser)).evaluate(() => window.__dur);
   const N = Math.round(dur * rfps);
@@ -77,7 +77,7 @@ if (mode === 'stills') {
   const list = path.join(tmp, 'list.txt');
   fs.writeFileSync(list, Array.from({ length: workers }, (_, w) => `file 'seg${w}.mkv'`).filter((_, w) => w * chunk < N).join('\n'));
   await run('ffmpeg', ['-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', list,
-    '-vf', `tmix=frames=${sub}:weights=1 1,select=not(mod(n\\,${sub})),setpts=N/${fps}/TB`, '-r', String(fps),
+    '-vf', `tmix=frames=${sub}:weights=${sub === 4 ? '1 2 2 1' : Array(sub).fill(1).join(' ')},select=eq(mod(n\\,${sub})\\,${sub - 1}),setpts=N/${fps}/TB`, '-r', String(fps),
     '-c:v', 'libx264', '-preset', 'slow', '-crf', '16', '-pix_fmt', 'yuv420p', out]);
   fs.rmSync(tmp, { recursive: true });
   console.log(`wrote ${out} in ${((Date.now() - t0) / 1000).toFixed(0)}s`);
