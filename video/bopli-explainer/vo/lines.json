@@ -1,0 +1,66 @@
+[
+ {
+  "start": 0.1,
+  "slot_end": 1.58,
+  "text": "One photo, every morning.",
+  "length": 1.46,
+  "speed": 1.15,
+  "voice": "af_heart"
+ },
+ {
+  "start": 1.75,
+  "slot_end": 3.6,
+  "text": "Far from mom? Now you're right here.",
+  "length": 1.83,
+  "speed": 1.1,
+  "voice": "af_heart"
+ },
+ {
+  "start": 4.25,
+  "slot_end": 5.75,
+  "text": "On her home screen, all day.",
+  "length": 1.49,
+  "speed": 1.1,
+  "voice": "af_heart"
+ },
+ {
+  "start": 6.15,
+  "slot_end": 7.75,
+  "text": "Snap one. Send it. Done.",
+  "length": 1.57,
+  "speed": 1.05,
+  "voice": "af_heart"
+ },
+ {
+  "start": 8.3,
+  "slot_end": 10.3,
+  "text": "Only the people you pick get to see it.",
+  "length": 1.91,
+  "speed": 1.0,
+  "voice": "af_heart"
+ },
+ {
+  "start": 11.35,
+  "slot_end": 13.0,
+  "text": "Miles apart. Still close.",
+  "length": 1.64,
+  "speed": 1.0,
+  "voice": "af_heart"
+ },
+ {
+  "start": 13.6,
+  "slot_end": 15.2,
+  "text": "They saw your morning.",
+  "length": 1.05,
+  "speed": 1.0,
+  "voice": "af_heart"
+ },
+ {
+  "start": 16.4,
+  "slot_end": 18.3,
+  "text": "Bopli. Coming soon to iPhone.",
+  "length": 1.83,
+  "speed": 1.0,
+  "voice": "af_heart"
+ }
+]
